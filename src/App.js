@@ -5,23 +5,8 @@ import NotesGrid from "./components/NotesGrid";
 import SearchBar from "./components/SearchBar";
 
 function App() {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "sample text 1",
-      date: "04.07.2022",
-    },
-    {
-      id: 2,
-      text: "sample text 2",
-      date: "03.07.2022",
-    },
-    {
-      id: 3,
-      text: "sample text 4",
-      date: "06.07.2022",
-    },
-  ]);
+  const [notes, setNotes] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const addNote = (text) => {
     const date = new Date();
@@ -30,7 +15,7 @@ function App() {
       text,
       date: date.toLocaleDateString(),
     };
-    const newNotes = [...notes, newNote];
+    const newNotes = [newNote, ...notes];
     setNotes(newNotes);
   };
 
@@ -41,8 +26,14 @@ function App() {
   return (
     <div className="container font-sans mx-auto px-4 h-screen">
       <Header />
-      <SearchBar/>
-      <NotesGrid notes={notes} addNote={addNote} deleteNote={deleteNote} />
+      <SearchBar value={inputValue} filterNotes={setInputValue} />
+      <NotesGrid
+        notes={notes.filter((note) =>
+          note.text.toLowerCase().includes(inputValue)
+        )}
+        addNote={addNote}
+        deleteNote={deleteNote}
+      />
     </div>
   );
 }

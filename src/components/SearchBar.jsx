@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ value, filterNotes }) => {
   return (
     <div>
-      <input className='w-full outline-none p-2 px-4 rounded-3xl' type="search" placeholder='Search in notes...'/>
+      <input
+        className="w-full outline-none p-2 px-4 rounded-3xl"
+        type="search"
+        placeholder="Search in notes..."
+        value={value}
+        onChange={(e) => filterNotes(e.target.value.toLowerCase())}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
