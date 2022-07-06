@@ -1,4 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-stone-100;
+  }
+  textarea {
+    border: none;
+    resize: none;
+    @apply bg-emerald-500;
+  }
+  textarea:focus {
+    outline: none;
+  }
+  textarea::placeholder {
+    @apply text-zinc-500
+  }
+}
