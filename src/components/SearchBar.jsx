@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = ({ value, filterNotes }) => {
   return (
-    <div>
+    <div className="mb-3">
       <input
         className="w-full outline-none p-2 px-4 rounded-3xl"
         type="search"

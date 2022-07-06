@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { FaTrash } from "react-icons/fa";
 
 const NewNote = ({ addNote }) => {
   const [textNote, setTextNote] = useState("");
   const remainingText = 150;
 
   const handleChange = (event) => {
-    if(remainingText - event.target.value.length >=0){
-      setTextNote(event.target.value)
+    if (remainingText - event.target.value.length >= 0) {
+      setTextNote(event.target.value);
     }
   };
 
   const saveNote = (event) => {
-    if(textNote.trim().length > 0){
+    if (textNote.trim().length > 0) {
       addNote(textNote);
-      setTextNote('')
+      setTextNote("");
     }
   };
 
@@ -29,7 +28,12 @@ const NewNote = ({ addNote }) => {
       ></textarea>
       <div className="flex justify-between items-center">
         <p>Remaining:{remainingText - textNote.length}</p>
-        <button className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500" onClick={saveNote}>Save</button>
+        <button
+          className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
+          onClick={saveNote}
+        >
+          Save
+        </button>
       </div>
     </div>
   );

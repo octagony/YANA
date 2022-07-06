@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 function App() {
   const [notes, setNotes] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const addNote = (text) => {
     const date = new Date();
@@ -23,17 +24,24 @@ function App() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  const setTheme = ()=>{
+    setIsDarkMode(!isDarkMode);
+    console.log(isDarkMode);
+  }
+
   return (
-    <div className="container font-sans mx-auto px-4 h-screen">
-      <Header />
-      <SearchBar value={inputValue} filterNotes={setInputValue} />
-      <NotesGrid
-        notes={notes.filter((note) =>
-          note.text.toLowerCase().includes(inputValue)
-        )}
-        addNote={addNote}
-        deleteNote={deleteNote}
-      />
+    <div className={`${isDarkMode && 'dark-mode'}`}>
+      <div className="container font-sans mx-auto px-4 h-screen">
+        <Header setTheme={setTheme} />
+        <SearchBar value={inputValue} filterNotes={setInputValue} />
+        <NotesGrid
+          notes={notes.filter((note) =>
+            note.text.toLowerCase().includes(inputValue)
+          )}
+          addNote={addNote}
+          deleteNote={deleteNote}
+        />
+      </div>
     </div>
   );
 }

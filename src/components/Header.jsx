@@ -1,11 +1,11 @@
 import React from "react";
-import { BsFillMoonFill } from 'react-icons/bs';
+import ThemeToggle from "./ThemeToggle";
 
-const Header = () => {
+const Header = ({ setTheme }) => {
   return (
-    <header className="p-2 flex justify-between items-center">
+    <header className="p-2 flex justify-between items-center mb-3">
       <h1 className="font-bold text-3xl">1-2-3 Notes</h1>
-      <BsFillMoonFill size={25}/>
+      <ThemeToggle setTheme={setTheme} />
     </header>
   );
 };

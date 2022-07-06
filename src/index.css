@@ -5,9 +5,11 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-stone-100;
+  :root {
+    background-color: #e9dcdc;
+    color: #2d3748;
   }
+  
   textarea {
     border: none;
     resize: none;
@@ -17,6 +19,11 @@
     outline: none;
   }
   textarea::placeholder {
-    @apply text-zinc-500
+    @apply text-zinc-500;
+  }
+
+  .dark-mode {
+    background-color: #2d3742;
+    color: #dbdbdb;
   }
 }
