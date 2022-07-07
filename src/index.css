@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,7 +7,7 @@
     background-color: #e9dcdc;
     color: #2d3748;
   }
-  
+
   textarea {
     border: none;
     resize: none;
@@ -24,6 +22,6 @@
 
   .dark-mode {
     background-color: #2d3742;
-    color: #dbdbdb;
+    color: #000;
   }
 }

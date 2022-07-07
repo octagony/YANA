@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className={`${isDarkMode && 'dark-mode'}`}>
-      <div className="container font-sans mx-auto px-4 h-screen">
+      <div className="container font-mono mx-auto px-4 h-screen">
         <Header setTheme={setTheme} />
         <SearchBar value={inputValue} filterNotes={setInputValue} />
         <NotesGrid

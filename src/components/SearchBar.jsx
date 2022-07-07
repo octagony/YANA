@@ -4,7 +4,7 @@ const SearchBar = ({ value, filterNotes }) => {
   return (
     <div className="mb-3">
       <input
-        className="w-full outline-none p-2 px-4 rounded-3xl"
+        className="w-full from-neutral-900 outline-none p-2 px-4 rounded-3xl"
         type="search"
         placeholder="Search in notes..."
         value={value}
