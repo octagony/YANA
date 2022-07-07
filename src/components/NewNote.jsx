@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-const NewNote = ({ addNote }) => {
+const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
   const [textNote, setTextNote] = useState("");
+
   const remainingText = 150;
 
   const handleChange = (event) => {
@@ -14,6 +15,7 @@ const NewNote = ({ addNote }) => {
     if (textNote.trim().length > 0) {
       addNote(textNote);
       setTextNote("");
+      showSaveBtns(false);
     }
   };
 
@@ -26,16 +28,32 @@ const NewNote = ({ addNote }) => {
         placeholder="Just start type..."
         value={textNote}
         onChange={handleChange}
-        onKeyDown = {(event)=>{
-          if(event.ctrlKey && event.key === 'Enter'){
-            saveNote()
+        onKeyDown={(event) => {
+          if (event.ctrlKey && event.key === "Enter") {
+            saveNote();
           }
         }}
       ></textarea>
       <div className="flex justify-between items-center">
-        <p className="text-xl text-gray-200">Remaining:{remainingText - textNote.length}</p>
+        <p className="text-lg text-gray-200">
+          Remaining:{remainingText - textNote.length}
+        </p>
+        {isSaveButtons ? (
+          <p className="text-sm">
+            <code className="p-2 border-2 rounded-xl bg-white shadow-xl border-white">
+              Ctrl
+            </code>{" "}
+            +{" "}
+            <code className="p-2 border-2 rounded-xl bg-white shadow-xl border-white">
+              Enter
+            </code>{" "}
+            for save
+          </p>
+        ) : (
+          ""
+        )}
         <button
-          className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
+          className="p-1 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
           onClick={saveNote}
         >
           Save

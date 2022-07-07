@@ -8,6 +8,7 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSaveButtons, setIsSaveButtons] = useState(true);
 
   const addNote = (text) => {
     const date = new Date();
@@ -24,13 +25,17 @@ function App() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  const setTheme = ()=>{
+  const setTheme = () => {
     setIsDarkMode(!isDarkMode);
     console.log(isDarkMode);
-  }
+  };
+
+  const showSaveBtns = (boolean) => {
+    boolean ? setIsSaveButtons(true) : setIsSaveButtons(false);
+  };
 
   return (
-    <div className={`${isDarkMode && 'dark-mode'}`}>
+    <div className={`${isDarkMode && "dark-mode"}`}>
       <div className="container font-mono text-lg mx-auto px-4 h-screen">
         <Header setTheme={setTheme} />
         <SearchBar value={inputValue} filterNotes={setInputValue} />
@@ -40,6 +45,8 @@ function App() {
           )}
           addNote={addNote}
           deleteNote={deleteNote}
+          showSaveBtns={showSaveBtns}
+          isSaveButtons={isSaveButtons}
         />
       </div>
     </div>

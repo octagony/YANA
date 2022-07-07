@@ -7,7 +7,11 @@ const Note = ({ id, text, date, deleteNote }) => {
       <span>{text}</span>
       <div className="flex justify-between items-center">
         <p>{date}</p>
-        <FaTrash className="cursor-pointer" size={20} onClick={() => deleteNote(id)} />
+        <FaTrash
+          className="cursor-pointer"
+          size={20}
+          onClick={() => deleteNote(id)}
+        />
       </div>
     </div>
   );
