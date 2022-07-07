@@ -27,7 +27,7 @@ const NewNote = ({ addNote }) => {
         value={textNote}
         onChange={handleChange}
         onKeyDown = {(event)=>{
-          if(event.key === 'Enter'){
+          if(event.ctrlKey && event.key === 'Enter'){
             saveNote()
           }
         }}
