@@ -35,7 +35,7 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
         }}
       ></textarea>
       <div className="flex justify-between items-center">
-        <p className="text-lg text-gray-200">
+        <p className="text-xl text-gray-200">
           Remaining:{remainingText - textNote.length}
         </p>
         {isSaveButtons ? (
@@ -53,7 +53,7 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
           ""
         )}
         <button
-          className="p-1 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
+          className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
           onClick={saveNote}
         >
           Save
