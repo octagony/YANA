@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { HiSun, HiMoon } from "react-icons/hi";
 
-const ThemeToggle = ({ setTheme }) => {
+const ThemeToggle = ({ setTheme, isDarkMode }) => {
   const [toggleTheme, setToggleTheme] = useState(false);
 
   const handleTheme = () => {
@@ -10,7 +10,7 @@ const ThemeToggle = ({ setTheme }) => {
   };
   return (
     <div className="p-2">
-      {toggleTheme ? (
+      {isDarkMode ? (
         <HiSun className="cursor-pointer" size={25} onClick={handleTheme} />
       ) : (
         <HiMoon className="cursor-pointer" size={25} onClick={handleTheme} />

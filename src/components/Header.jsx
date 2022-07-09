@@ -17,7 +17,7 @@ const Header = ({ setTheme, isDarkMode }) => {
       <IconContext.Provider
         value={{ color: `${isDarkMode ? "white" : "black"}` }}
       >
-        <ThemeToggle setTheme={setTheme} />
+        <ThemeToggle setTheme={setTheme} isDarkMode={isDarkMode} />
       </IconContext.Provider>
     </header>
   );

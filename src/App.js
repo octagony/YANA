@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import Header from "./components/Header";
 import NotesGrid from "./components/NotesGrid";
 import SearchBar from "./components/SearchBar";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes-data")) ?? []
+  );
   const [inputValue, setInputValue] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isSaveButtons, setIsSaveButtons] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(
+    JSON.parse(localStorage.getItem("dark-mode")) ?? false
+  );
+  const [isSaveButtons, setIsSaveButtons] = useState(
+    notes.length ? false : true
+  );
+
+  useEffect(() => {
+    localStorage.setItem("notes-data", JSON.stringify(notes));
+    localStorage.setItem("dark-mode", JSON.stringify(isDarkMode));
+  }, [notes, isDarkMode]);
 
   const addNote = (text) => {
     const date = new Date();
@@ -23,6 +34,7 @@ function App() {
 
   const deleteNote = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
+    setIsSaveButtons(notes.length ? false : true);
   };
 
   const setTheme = () => {
