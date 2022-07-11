@@ -21,14 +21,14 @@ const Note = ({ id, text, date, deleteNote, editNote }) => {
   return (
     <div className="bg-lime-200 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       {isEdit ? (
-        <input
-          className="bg-lime-200 h-auto p-2"
+        <textarea
+          className="bg-lime-200 h-full"
           ref={editNoteValue}
           type="text"
           value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
+          onChange={(event) => setEditValue(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.ctrlKey && event.key === "Enter") {
               editModeMemoized();
             }
           }}

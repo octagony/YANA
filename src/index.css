@@ -14,8 +14,10 @@
     @apply bg-emerald-500;
   }
   textarea:focus {
-    outline: none;
+    outline: 1px solid black;
+    border: none;
   }
+
   textarea::placeholder {
     @apply text-zinc-500;
   }
