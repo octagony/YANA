@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import Header from "./components/Header";
 import NotesGrid from "./components/NotesGrid";
 import SearchBar from "./components/SearchBar";
+import Footer from "./components/Footer";
 
 function App() {
   const [notes, setNotes] = useState(
@@ -67,6 +68,7 @@ function App() {
           isSaveButtons={isSaveButtons}
           editNote={editNote}
         />
+        <Footer/>
       </div>
     </div>
   );

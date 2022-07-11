@@ -22,7 +22,7 @@ const Note = ({ id, text, date, deleteNote, editNote }) => {
     <div className="bg-lime-200 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       {isEdit ? (
         <textarea
-          className="bg-lime-200 h-full"
+          className="bg-lime-200 h-full outline-1"
           ref={editNoteValue}
           type="text"
           value={editValue}
