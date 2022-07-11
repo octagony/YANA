@@ -8,6 +8,7 @@ const NotesGrid = ({
   deleteNote,
   showSaveBtns,
   isSaveButtons,
+  editNote,
 }) => {
   return (
     <main className="grid grid-cols-layout gap-4">
@@ -23,6 +24,7 @@ const NotesGrid = ({
           text={note.text}
           date={note.date}
           deleteNote={deleteNote}
+          editNote={editNote}
         />
       ))}
     </main>

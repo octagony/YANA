@@ -20,9 +20,9 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
   };
 
   return (
-    <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between">
+    <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       <textarea
-        className="placeholder:text-gray-200"
+        className="placeholder:text-gray-200 whitespace-pre-wrap"
         cols="10"
         rows="8"
         placeholder="Just start type..."
@@ -55,6 +55,7 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
         <button
           className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
           onClick={saveNote}
+          aria-label='Save'
         >
           Save
         </button>

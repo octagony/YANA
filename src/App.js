@@ -46,9 +46,15 @@ function App() {
     boolean ? setIsSaveButtons(true) : setIsSaveButtons(false);
   };
 
+  const editNote = (id, value) => {
+    setNotes(
+      notes.map((note) => (note.id === id ? { ...note, text: value } : note))
+    );
+  };
+
   return (
-    <div className={`${isDarkMode && "dark-mode"}`}>
-      <div className="container font-mono text-lg mx-auto px-4 h-screen">
+    <div className={`${isDarkMode && "dark-mode"} h-screen`}>
+      <div className="container font-mono text-lg mx-auto px-4 ">
         <Header setTheme={setTheme} isDarkMode={isDarkMode} />
         <SearchBar value={inputValue} filterNotes={setInputValue} />
         <NotesGrid
@@ -59,6 +65,7 @@ function App() {
           deleteNote={deleteNote}
           showSaveBtns={showSaveBtns}
           isSaveButtons={isSaveButtons}
+          editNote={editNote}
         />
       </div>
     </div>
