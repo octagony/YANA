@@ -68,7 +68,7 @@ function App() {
           isSaveButtons={isSaveButtons}
           editNote={editNote}
         />
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
