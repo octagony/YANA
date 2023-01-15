@@ -1,57 +1,21 @@
-import React, { useState, useRef, useLayoutEffect, useCallback } from "react";
+import React from "react";
 import { FaTrash } from "react-icons/fa";
-import { AiFillEdit, AiOutlineCheck } from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import notesStore from "../store/NotesStore.jsx";
 
-const Note = ({ id, text, date, deleteNote, editNote }) => {
-  const [isEdit, setIsEdit] = useState(false);
-  const [editValue, setEditValue] = useState(text);
-  const editNoteValue = useRef(null);
-
-  const editModeMemoized = useCallback(() => {
-    setIsEdit(!isEdit);
-    editNote(id, editValue);
-  }, [editValue, isEdit, id, editNote]);
-
-  useLayoutEffect(() => {
-    if (isEdit && editNoteValue) {
-      editNoteValue.current.focus();
-    }
-  }, [isEdit]);
+const Note = ({ id, text, date }) => {
+  const deleteNote = notesStore((state) => state.deleteNote);
 
   return (
-    <div className="bg-lime-200 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
-      {isEdit ? (
-        <textarea
-          className="bg-lime-200 h-full outline-1"
-          ref={editNoteValue}
-          type="text"
-          value={editValue}
-          onChange={(event) => setEditValue(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.ctrlKey && event.key === "Enter") {
-              editModeMemoized();
-            }
-          }}
-        />
-      ) : (
-        <span>{text}</span>
-      )}
+    <div className="bg-lime-200 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap [&:nth-child(3)]:col-start-1 [&:nth-child(3)]:col-end-3 [&:nth-child(4)]:col-start-3 [&:nth-child(4)]:col-end-5 [&:nth-child(7)]:col-start-1 [&:nth-child(7)]:col-end-[-1] ">
+      <span>{text}</span>
       <div className="flex justify-between items-center">
         <p>{date}</p>
         <div className="flex items-center gap-8">
-          {isEdit ? (
-            <AiOutlineCheck
-              className="cursor-pointer transition-transform hover:scale-[1.2]"
-              size={25}
-              onClick={editModeMemoized}
-            />
-          ) : (
-            <AiFillEdit
-              className="cursor-pointer transition-transform hover:scale-[1.2]"
-              size={25}
-              onClick={() => setIsEdit(!isEdit)}
-            />
-          )}
+          <Link to={`/edit-note/${id}`}>
+            <AiFillEdit size={25} />
+          </Link>
           <FaTrash
             className="cursor-pointer transition-transform hover:scale-[1.2]"
             size={20}

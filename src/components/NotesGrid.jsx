@@ -1,31 +1,15 @@
 import React from "react";
 import NewNote from "./NewNote";
 import Note from "./Note";
+import notesStore from "../store/NotesStore.jsx";
 
-const NotesGrid = ({
-  notes,
-  addNote,
-  deleteNote,
-  showSaveBtns,
-  isSaveButtons,
-  editNote,
-}) => {
+const NotesGrid = () => {
+  const notes = notesStore((state) => state.notes);
   return (
-    <main className="grid grid-cols-layout gap-4">
-      <NewNote
-        addNote={addNote}
-        showSaveBtns={showSaveBtns}
-        isSaveButtons={isSaveButtons}
-      />
+    <main className="grid grid-cols-layout gap-5">
+      <NewNote />
       {notes.map((note) => (
-        <Note
-          key={note.id}
-          id={note.id}
-          text={note.text}
-          date={note.date}
-          deleteNote={deleteNote}
-          editNote={editNote}
-        />
+        <Note key={note.id} {...note} />
       ))}
     </main>
   );

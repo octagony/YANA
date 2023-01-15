@@ -1,7 +1,7 @@
 import React from "react";
 
-const EditNote = () => {
-  return <h1>Edit Note</h1>;
+const EditNote = ({ note }) => {
+  return <h1>{note.title}</h1>;
 };
 
 export default EditNote;

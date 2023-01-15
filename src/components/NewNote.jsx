@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import notesStore from "../store/NotesStore.jsx";
 
-const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
+const NewNote = () => {
+  const [notes, addNote] = notesStore((state) => [state.notes, state.addNote]);
   const [textNote, setTextNote] = useState("");
 
+  const [isSaveButtons, setIsSaveButton] = useState(
+    notes.length > 0 ? false : true
+  );
+
   const remainingText = 150;
+
+  useEffect(() => {
+    notes.length > 0 ? setIsSaveButton(false) : setIsSaveButton(true);
+  }, [notes]);
 
   const handleChange = (event) => {
     if (remainingText - event.target.value.length >= 0) {
@@ -15,7 +25,6 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
     if (textNote.trim().length > 0) {
       addNote(textNote);
       setTextNote("");
-      showSaveBtns(false);
     }
   };
 
@@ -47,7 +56,7 @@ const NewNote = ({ addNote, showSaveBtns, isSaveButtons }) => {
         </button>
       </div>
       {isSaveButtons ? (
-        <p className="text-sm text-center py-2 hidden lg:block">
+        <p className="text-sm text-center py-2 ">
           <code className="p-2 border-2 rounded-xl bg-white shadow-xl border-white">
             Ctrl
           </code>
