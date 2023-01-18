@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useNotes from "../store/useNotes.jsx";
+import { useNotes } from "../store/useNotes.jsx";
 
 const NewNote = () => {
   const [notes, addNote] = useNotes((state) => [state.notes, state.addNote]);

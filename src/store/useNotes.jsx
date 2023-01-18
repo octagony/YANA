@@ -18,10 +18,12 @@ const useNotes = create((set) => ({
   editNote: (id, value) => {
     set((state) => ({
       notes: state.notes.map((note) =>
-        note.id === id ? { ...note, text: value } : note
+        note.id === id
+          ? { ...note, text: value, date: new Date().toLocaleDateString() }
+          : note
       ),
     }));
   },
 }));
 
-export default useNotes;
+export { useNotes };

@@ -1,15 +1,9 @@
 import React from "react";
 import { AiFillGithub } from "react-icons/ai";
-import useTheme from "../store/useTheme.jsx";
 
 const Footer = () => {
-  const theme = useTheme((state) => state.theme);
   return (
-    <div
-      className={`w-full text-center mt-5 rounded-3xl  ${
-        theme ? "text-white" : "text-neutral-900"
-      }`}
-    >
+    <div className="text-neutral-700 dark:text-gray-200 text-center mt-10">
       <a
         className="inline-block"
         href="https://github.com/octagony"

@@ -1,7 +1,7 @@
 import React from "react";
 import NewNote from "./NewNote";
 import Note from "./Note";
-import useNotes from "../store/useNotes.jsx";
+import { useNotes } from "../store/useNotes.jsx";
 import useSearch from "../store/useSearch.jsx";
 
 const NotesGrid = () => {
