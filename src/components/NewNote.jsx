@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import notesStore from "../store/NotesStore.jsx";
+import useNotes from "../store/useNotes.jsx";
 
 const NewNote = () => {
-  const [notes, addNote] = notesStore((state) => [state.notes, state.addNote]);
+  const [notes, addNote] = useNotes((state) => [state.notes, state.addNote]);
   const [textNote, setTextNote] = useState("");
 
   const [isSaveButtons, setIsSaveButton] = useState(
@@ -31,7 +31,7 @@ const NewNote = () => {
   return (
     <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       <textarea
-        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none"
+        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-emerald-500"
         cols="10"
         rows="8"
         placeholder="Just start type..."

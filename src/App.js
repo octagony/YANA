@@ -1,30 +1,35 @@
-import { useEffect, useState } from "react";
-import notesStore from "./store/NotesStore.jsx";
-import themeStore from "./store/ThemeStore.jsx";
+import { useEffect } from "react";
+import useTheme from "./store/useTheme.jsx";
+import useNotes from "./store/useNotes.jsx";
 import Header from "./components/Header";
 import NotesGrid from "./components/NotesGrid";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 
 function App() {
-  const notes = notesStore((state) => state.notes);
-  const theme = themeStore((state) => state.theme);
-
-  const [inputValue, setInputValue] = useState("");
+  const notes = useNotes((state) => state.notes);
+  const theme = useTheme((state) => state.theme);
 
   useEffect(() => {
     localStorage.setItem("notes-data", JSON.stringify(notes));
-    localStorage.setItem("dark-mode", JSON.stringify(theme));
+    localStorage.setItem("theme", JSON.stringify(theme));
   }, [notes, theme]);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.remove("dark");
+    } else {
+      root.classList.add("dark");
+    }
+  }, [theme]);
+
   return (
-    <div className={`${theme && "dark-mode"} h-screen`}>
-      <div className="container font-mono text-lg mx-auto px-4 ">
-        <Header />
-        <SearchBar value={inputValue} filterNotes={setInputValue} />
-        <NotesGrid value={inputValue} filterNotes={setInputValue} />
-        <Footer />
-      </div>
+    <div className="container font-mono text-lg mx-auto px-4 ">
+      <Header />
+      <SearchBar />
+      <NotesGrid />
+      <Footer />
     </div>
   );
 }

@@ -1,15 +1,12 @@
 import React from "react";
 import { HiSun, HiMoon } from "react-icons/hi";
-import themeStore from "../store/ThemeStore.jsx";
+import useTheme from "../store/useTheme.jsx";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = themeStore((state) => [
-    state.theme,
-    state.setTheme,
-  ]);
+  const [theme, setTheme] = useTheme((state) => [state.theme, state.setTheme]);
   return (
     <div className="p-2 cursor-pointer" onClick={setTheme}>
-      {theme ? <HiSun size={25} /> : <HiMoon size={25} />}
+      {theme === "light" ? <HiSun size={25} /> : <HiMoon size={25} />}
     </div>
   );
 };
