@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useTheme from "./store/useTheme.jsx";
-import { useNotes } from "./store/useNotes.jsx";
+import { useNotes } from "./store/useNotes";
 import Header from "./components/Header";
 import NotesGrid from "./components/NotesGrid";
 import SearchBar from "./components/SearchBar";

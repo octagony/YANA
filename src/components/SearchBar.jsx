@@ -7,7 +7,7 @@ const SearchBar = () => {
     state.setInputValue,
   ]);
   return (
-    <div className="mb-3">
+    <div className="mb-8">
       <input
         className="w-full from-neutral-900 outline-none p-2 px-4 rounded-3xl"
         type="search"

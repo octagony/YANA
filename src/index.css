@@ -11,5 +11,5 @@ body {
 }
 
 body {
-  @apply bg-gray-200 dark:bg-neutral-700;
+  @apply bg-gray-300 dark:bg-neutral-700;
 }
