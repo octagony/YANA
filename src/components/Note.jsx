@@ -2,7 +2,7 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { useNotes } from "../store/useNotes.jsx";
+import { useNotes } from "../store/useNotes";
 
 const Note = ({ id, text, date }) => {
   const deleteNote = useNotes((state) => state.deleteNote);

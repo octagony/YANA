@@ -1,6 +1,6 @@
 import React from "react";
 import { HiSun, HiMoon } from "react-icons/hi";
-import useTheme from "../store/useTheme.jsx";
+import { useTheme } from "../store/useTheme";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useTheme((state) => [state.theme, state.setTheme]);

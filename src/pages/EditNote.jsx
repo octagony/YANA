@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useNotes } from "../store/useNotes.jsx";
+import Header from "../components/Header.jsx";
+import { useNotes } from "../store/useNotes";
+import { useTheme } from "../store/useTheme";
 
 const EditNote = () => {
   const { id } = useParams();
 
   const notes = useNotes((state) => state.notes);
+  const theme = useTheme((state) => state.theme);
   const editNote = useNotes((state) => state.editNote);
 
   const note = notes.find((note) => note.id === id);
@@ -20,10 +23,22 @@ const EditNote = () => {
     editNote(id, handleChange);
   };
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === "light") {
+      root.classList.remove("dark");
+    } else {
+      root.classList.add("dark");
+    }
+  }, [theme]);
+
   return (
-    <div>
+    <>
+      <h2 className="text-4xl font-bold text-center dark:text-white">
+        Edit Note
+      </h2>
       <textarea
-        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-emerald-500"
+        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-lime-200  w-full rounded-xl p-2"
         cols="10"
         rows="8"
         placeholder="Just start type..."
@@ -36,7 +51,7 @@ const EditNote = () => {
         }}
       ></textarea>
       <button onClick={saveNote}>Save</button>
-    </div>
+    </>
   );
 };
 

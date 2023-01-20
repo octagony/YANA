@@ -1,7 +1,7 @@
 import create from "zustand";
 import { nanoid } from "nanoid";
 
-const useNotes = create((set) => ({
+export const useNotes = create((set) => ({
   notes: JSON.parse(localStorage.getItem("notes-data")) ?? [],
   addNote: (text) =>
     set((state) => ({
@@ -25,5 +25,3 @@ const useNotes = create((set) => ({
     }));
   },
 }));
-
-export { useNotes };

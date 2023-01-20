@@ -1,5 +1,5 @@
 import React from "react";
-import useSearch from "../store/useSearch.jsx";
+import { useSearch } from "../store/useSearch";
 
 const SearchBar = () => {
   const [inputValue, setInputValue] = useSearch((state) => [
