@@ -1,8 +1,21 @@
 import create from "zustand";
 import { nanoid } from "nanoid";
 
+const getLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
+
+const setLocalStorage = (key, value) =>
+  localStorage.setItem(key, JSON.stringify(value));
+
 export const useNotes = create((set) => ({
-  notes: JSON.parse(localStorage.getItem("notes-data")) ?? [],
+  notes: getLocalStorage("notes-data") ?? [],
+  setNotes: (notes) => {
+    set(() => {
+      setLocalStorage("notes-data", notes);
+      return {
+        notes,
+      };
+    });
+  },
   addNote: (text) =>
     set((state) => ({
       notes: [

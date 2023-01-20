@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header.jsx";
 import { useNotes } from "../store/useNotes";
 import { useTheme } from "../store/useTheme";
 
@@ -16,14 +15,6 @@ const EditNote = () => {
   const [handleChange, setHandleChange] = useState(note.text);
 
   useEffect(() => {
-    localStorage.setItem("notes-data", JSON.stringify(notes));
-  }, [notes]);
-
-  const saveNote = () => {
-    editNote(id, handleChange);
-  };
-
-  useEffect(() => {
     const root = document.documentElement;
     if (theme === "light") {
       root.classList.remove("dark");
@@ -31,6 +22,10 @@ const EditNote = () => {
       root.classList.add("dark");
     }
   }, [theme]);
+
+  const saveNote = () => {
+    editNote(id, handleChange);
+  };
 
   return (
     <>
