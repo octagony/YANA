@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import withLayout from "../layout/withLayout";
 import { useNotes } from "../store/useNotes";
 import { useTheme } from "../store/useTheme";
 
@@ -50,4 +51,4 @@ const EditNote = () => {
   );
 };
 
-export default EditNote;
+export default withLayout(EditNote);

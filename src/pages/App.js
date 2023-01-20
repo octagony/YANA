@@ -3,9 +3,9 @@ import { useTheme } from "../store/useTheme";
 import { useNotes } from "../store/useNotes";
 import NotesGrid from "../components/NotesGrid";
 import SearchBar from "../components/SearchBar";
-import Footer from "../components/Footer";
+import withLayout from "../layout/withLayout";
 
-function App() {
+const App = () => {
   const [notes, setNotes] = useNotes((state) => [state.notes, state.setNotes]);
   const theme = useTheme((state) => state.theme);
 
@@ -26,9 +26,8 @@ function App() {
     <>
       <SearchBar />
       <NotesGrid />
-      <Footer />
     </>
   );
-}
+};
 
-export default App;
+export default withLayout(App);
