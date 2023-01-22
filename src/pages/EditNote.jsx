@@ -4,12 +4,19 @@ import withLayout from "../layout/withLayout";
 import { useNotes } from "../store/useNotes";
 import { useTheme } from "../store/useTheme";
 import Button from "../UI/Button";
+import { animated, useSpring } from "@react-spring/web";
 
 const EditNote = () => {
-
   const { id } = useParams();
 
-  const [notes, setNotes] = useNotes((state) => [state.notes,state.setNotes]);
+  const animation = useSpring({
+    x: 0,
+    from: {
+      x: -300,
+    },
+  });
+
+  const [notes, setNotes] = useNotes((state) => [state.notes, state.setNotes]);
   const theme = useTheme((state) => state.theme);
   const editNote = useNotes((state) => state.editNote);
 
@@ -35,7 +42,7 @@ const EditNote = () => {
   };
 
   return (
-    <>
+    <animated.div style={animation}>
       <h2 className="mb-4 text-4xl font-bold text-center dark:text-white">
         Edit Note
       </h2>
@@ -53,9 +60,14 @@ const EditNote = () => {
             }
           }}
         ></textarea>
-        <Button className="block mx-auto mb-2 w-2/12 hover:bg-emerald-600 hover:text-gray-100" noteAction={saveNote}>Save</Button>
+        <Button
+          className="bg-emerald-500 text-gray-100 block mx-auto mb-2 w-2/6 md:w-2/12 hover:bg-emerald-600 hover:text-gray-100"
+          noteAction={saveNote}
+        >
+          Save
+        </Button>
       </div>
-    </>
+    </animated.div>
   );
 };
 

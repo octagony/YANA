@@ -3,11 +3,19 @@ import { useTheme } from "../store/useTheme";
 import { useNotes } from "../store/useNotes";
 import NotesGrid from "../components/NotesGrid";
 import SearchBar from "../components/SearchBar";
-import withLayout from "../layout/withLayout";
+import Layout from "../layout/withLayout";
+import { animated, useSpring } from "@react-spring/web";
 
 const App = () => {
   const [notes, setNotes] = useNotes((state) => [state.notes, state.setNotes]);
   const theme = useTheme((state) => state.theme);
+
+  const animation = useSpring({
+    x: 0,
+    from: {
+      x: -300,
+    },
+  });
 
   useEffect(() => {
     setNotes(notes);
@@ -23,11 +31,11 @@ const App = () => {
   }, [theme]);
 
   return (
-    <>
+    <animated.div style={animation}>
       <SearchBar />
       <NotesGrid />
-    </>
+    </animated.div>
   );
 };
 
-export default withLayout(App);
+export default Layout(App);

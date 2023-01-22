@@ -9,7 +9,7 @@ const SearchBar = () => {
   return (
     <div className="mb-8">
       <input
-        className="w-full from-neutral-900 outline-none p-2 px-4 rounded-3xl"
+        className="w-full from-neutral-900 outline-none py-3 px-5 rounded-3xl"
         type="search"
         placeholder="Search in notes..."
         value={inputValue}

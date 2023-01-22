@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNotes } from "../store/useNotes";
 import Button from "../UI/Button";
 
-
 const NewNote = () => {
   const [notes, addNote] = useNotes((state) => [state.notes, state.addNote]);
   const [textNote, setTextNote] = useState("");
@@ -30,7 +29,7 @@ const NewNote = () => {
         rows="8"
         placeholder="Just start type..."
         value={textNote}
-        onChange={(event)=>setTextNote(event.target.value)}
+        onChange={(event) => setTextNote(event.target.value)}
         onKeyDown={(event) => {
           if (event.ctrlKey && event.key === "Enter") {
             saveNote();
@@ -38,9 +37,7 @@ const NewNote = () => {
         }}
       ></textarea>
       <div className="ml-auto">
-        <Button noteAction={saveNote}>
-          Save
-        </Button>
+        <Button noteAction={saveNote}>Save</Button>
       </div>
       {isSaveButtons ? (
         <p className="text-sm text-center py-2 ">
