@@ -11,5 +11,5 @@ body {
 }
 
 body {
-  @apply bg-gray-300 dark:bg-neutral-700 container font-mono text-lg mx-auto px-4;
+  @apply bg-gray-300 dark:bg-neutral-700 container font-mono text-lg mx-auto px-4 leading-5 transition-colors duration-500;
 }
