@@ -3,7 +3,7 @@ import { AiFillGithub } from "react-icons/ai";
 
 const Footer = () => {
   return (
-    <div className="text-neutral-700 dark:text-gray-200 text-center mt-10">
+    <div className="my-5 text-neutral-700 dark:text-gray-200 text-center ">
       <a
         className="inline-block"
         href="https://github.com/octagony"

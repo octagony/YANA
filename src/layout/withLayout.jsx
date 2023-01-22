@@ -5,11 +5,13 @@ import Header from "../components/Header";
 const withLayout = (Component) => {
   return (props) => {
     return (
-      <>
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <Component {...props} />
+        <div className="flex-grow">
+          <Component {...props} />
+        </div>
         <Footer />
-      </>
+      </div>
     );
   };
 };
