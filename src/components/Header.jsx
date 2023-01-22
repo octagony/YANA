@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   return (
-    <header className="p-4 flex justify-between items-center mb-3">
+    <header className="p-4 flex justify-between items-center my-3">
       <div>
         <Link to="/">
           <h1 className="text-2xl sm:text-5xl font-bold text-center dark:text-white">
