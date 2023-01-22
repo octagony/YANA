@@ -6,11 +6,10 @@ import { useTheme } from "../store/useTheme";
 import Button from "../UI/Button";
 
 const EditNote = () => {
-  const remainingText = 150;
 
   const { id } = useParams();
 
-  const notes = useNotes((state) => state.notes);
+  const [notes, setNotes] = useNotes((state) => [state.notes,state.setNotes]);
   const theme = useTheme((state) => state.theme);
   const editNote = useNotes((state) => state.editNote);
 
@@ -27,6 +26,10 @@ const EditNote = () => {
     }
   }, [theme]);
 
+  useEffect(() => {
+    setNotes(notes);
+  }, [notes, setNotes]);
+
   const saveNote = () => {
     editNote(id, handleChange);
   };
@@ -38,7 +41,7 @@ const EditNote = () => {
       </h2>
       <div className="bg-lime-200 rounded-xl p-2">
         <textarea
-          className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-lime-200 w-full rounded-xl p-4 mb-2"
+          className="placeholder:text-gray-200 resize-none leading-7 whitespace-pre-wrap outline-none bg-lime-200 w-full rounded-xl p-4 mb-2"
           cols="10"
           rows="8"
           placeholder="Just start type..."
@@ -50,7 +53,7 @@ const EditNote = () => {
             }
           }}
         ></textarea>
-        <Button className="block mx-auto mb-2 w-2/12  hover:bg-emerald-600 hover:text-gray-100" noteAction={saveNote}>Save</Button>
+        <Button className="block mx-auto mb-2 w-2/12 hover:bg-emerald-600 hover:text-gray-100" noteAction={saveNote}>Save</Button>
       </div>
     </>
   );
