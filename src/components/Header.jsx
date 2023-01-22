@@ -11,7 +11,7 @@ const Header = () => {
             YANA
           </h1>
         </Link>
-        <span className="text-sm md:text-lg dark:text-white">Yet Another <span className="block text-center sm:inline">Notes App</span></span>
+        <span className="hidden md:block text-xl dark:text-white">Yet Another Notes App</span>
       </div>
       <ThemeToggle />
     </header>

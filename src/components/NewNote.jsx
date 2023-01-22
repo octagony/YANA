@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNotes } from "../store/useNotes";
+import Button from "../UI/Button";
 
-//TODO
+
 const NewNote = () => {
   const [notes, addNote] = useNotes((state) => [state.notes, state.addNote]);
   const [textNote, setTextNote] = useState("");
@@ -16,12 +17,6 @@ const NewNote = () => {
     notes.length > 0 ? setIsSaveButton(false) : setIsSaveButton(true);
   }, [notes]);
 
-  const handleChange = (event) => {
-    if (remainingText - event.target.value.length >= 0) {
-      setTextNote(event.target.value);
-    }
-  };
-
   const saveNote = () => {
     if (textNote.trim().length > 0) {
       addNote(textNote);
@@ -32,29 +27,22 @@ const NewNote = () => {
   return (
     <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       <textarea
-        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-emerald-500"
+        className="placeholder:text-neutral-100 whitespace-pre-wrap outline-none bg-emerald-500 p-4"
         cols="10"
         rows="8"
         placeholder="Just start type..."
         value={textNote}
-        onChange={handleChange}
+        onChange={(event)=>setTextNote(event.target.value)}
         onKeyDown={(event) => {
           if (event.ctrlKey && event.key === "Enter") {
             saveNote();
           }
         }}
       ></textarea>
-      <div className="flex justify-between items-center">
-        <p className="text-xl text-gray-200 flex-grow">
-          Remaining:{remainingText - textNote.length}
-        </p>
-        <button
-          className="p-2 bg-transparent border-2 border-lime-200 rounded-2xl shadow-lg transition hover:bg-lime-500"
-          onClick={saveNote}
-          aria-label="Save"
-        >
+      <div className="ml-auto">
+        <Button noteAction={saveNote}>
           Save
-        </button>
+        </Button>
       </div>
       {isSaveButtons ? (
         <p className="text-sm text-center py-2 ">

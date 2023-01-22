@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import withLayout from "../layout/withLayout";
 import { useNotes } from "../store/useNotes";
 import { useTheme } from "../store/useTheme";
+import Button from "../UI/Button";
 
 const EditNote = () => {
+  const remainingText = 150;
+
   const { id } = useParams();
 
   const notes = useNotes((state) => state.notes);
@@ -30,23 +33,25 @@ const EditNote = () => {
 
   return (
     <>
-      <h2 className="text-4xl font-bold text-center dark:text-white">
+      <h2 className="mb-4 text-4xl font-bold text-center dark:text-white">
         Edit Note
       </h2>
-      <textarea
-        className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-lime-200  w-full rounded-xl p-2"
-        cols="10"
-        rows="8"
-        placeholder="Just start type..."
-        value={handleChange}
-        onChange={(event) => setHandleChange(event.target.value)}
-        onKeyDown={(event) => {
-          if (event.ctrlKey && event.key === "Enter") {
-            saveNote();
-          }
-        }}
-      ></textarea>
-      <button onClick={saveNote}>Save</button>
+      <div className="bg-lime-200 rounded-xl p-2">
+        <textarea
+          className="placeholder:text-gray-200 whitespace-pre-wrap outline-none bg-lime-200 w-full rounded-xl p-4 mb-2"
+          cols="10"
+          rows="8"
+          placeholder="Just start type..."
+          value={handleChange}
+          onChange={(event) => setHandleChange(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.ctrlKey && event.key === "Enter") {
+              saveNote();
+            }
+          }}
+        ></textarea>
+        <Button className="block mx-auto mb-2 w-2/12  hover:bg-emerald-600 hover:text-gray-100" noteAction={saveNote}>Save</Button>
+      </div>
     </>
   );
 };

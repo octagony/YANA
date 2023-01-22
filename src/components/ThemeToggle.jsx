@@ -5,9 +5,10 @@ import { useTheme } from "../store/useTheme";
 const ThemeToggle = () => {
   const [theme, setTheme] = useTheme((state) => [state.theme, state.setTheme]);
   return (
-    <div className="p-2 cursor-pointer dark:text-white" onClick={setTheme}>
+    <button className="p-2 cursor-pointer dark:text-white" onClick={setTheme} aria-label="Theme Toggle"
+    >
       {theme === "light" ? <HiSun size={25} /> : <HiMoon size={25} />}
-    </div>
+    </button>
   );
 };
 
