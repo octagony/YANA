@@ -4,12 +4,8 @@ import "./index.css";
 import App from "./pages/App";
 import EditNote from "./pages/EditNote/EditNote";
 import Page404 from "./pages/Page404/Page404";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "react-tooltip/dist/react-tooltip.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 

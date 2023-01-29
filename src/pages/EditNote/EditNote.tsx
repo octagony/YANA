@@ -7,10 +7,12 @@ import { animated, useSpring } from "@react-spring/web";
 import { INote } from "../../../types/INotes";
 import styles from "./EditNote.module.css";
 import { useThemeToggling } from "../../hooks/useThemeToggling";
+import { AiOutlineSave } from "react-icons/ai";
 
 const EditNote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [isTooltipShow, setIsTooltipShow] = useState<boolean>(false);
 
   const animation = useSpring({
     x: 0,
@@ -21,7 +23,7 @@ const EditNote = () => {
 
   const { notes, setNotes } = useNotes();
   const { editNote } = useNotes();
-  const  theme  = useThemeToggling();
+  const theme = useThemeToggling();
 
   const note = notes.find((note: INote) => note.id === id);
   const [handleChange, setHandleChange] = useState<string>(
@@ -38,8 +40,20 @@ const EditNote = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const tooltopTimeout = setTimeout(() => {
+      setIsTooltipShow(false);
+    }, 2500);
+    return () => clearTimeout(tooltopTimeout);
+  }, [isTooltipShow]);
+
   const saveNote = () => {
-    editNote(id as string, handleChange);
+    try {
+      editNote(id as string, handleChange);
+      setIsTooltipShow(true);
+    } catch (e) {
+      console.error("Error:", e);
+    }
   };
 
   return (
@@ -62,6 +76,9 @@ const EditNote = () => {
         <Button className={styles.btn} noteAction={saveNote}>
           Save
         </Button>
+        {isTooltipShow ? (
+          <AiOutlineSave className="absolute bottom-6 right-6" size={30} />
+        ) : null}
       </div>
     </animated.div>
   );
