@@ -1,0 +1,15 @@
+.wrapper{
+    @apply absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] dark:text-white text-center py-4 grid
+}
+
+.title{
+    @apply text-xl mb-4 sm:text-3xl
+}
+
+.subText{
+    @apply text-sm sm:text-xl
+}
+
+.link{
+    @apply text-emerald-700 dark:text-lime-300
+}

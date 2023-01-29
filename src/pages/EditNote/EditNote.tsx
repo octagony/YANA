@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import withLayout from "../layout/withLayout";
-import { useNotes } from "../store/useNotes";
-import { useTheme } from "../store/useTheme";
-import Button from "../UI/Button";
+import { useNavigate, useParams } from "react-router-dom";
+import withLayout from "../../layout/withLayout";
+import { useNotes } from "../../store/useNotes";
+import { useTheme } from "../../store/useTheme";
+import Button from "../../UI/Button";
 import { animated, useSpring } from "@react-spring/web";
-import { INote } from "../../types/INotes";
+import { INote } from "../../../types/INotes";
+import styles from "./EditNote.module.css";
 
 const EditNote = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const animation = useSpring({
     x: 0,
@@ -21,9 +23,10 @@ const EditNote = () => {
   const { theme } = useTheme();
   const { editNote } = useNotes();
 
-  const note = notes.find((note:INote) => note.id === id);
-
-  const [handleChange, setHandleChange] = useState<string>(note?.text as string);
+  const note = notes.find((note: INote) => note.id === id);
+  const [handleChange, setHandleChange] = useState<string>(
+    note?.text as string
+  );
 
   useEffect(() => {
     const root = document.documentElement;
@@ -38,18 +41,22 @@ const EditNote = () => {
     setNotes(notes);
   }, [notes, setNotes]);
 
+  useEffect(() => {
+    if (note?.id !== id) {
+      navigate("/");
+    }
+  }, []);
+
   const saveNote = () => {
     editNote(id as string, handleChange);
   };
 
   return (
     <animated.div style={animation}>
-      <h2 className="mb-4 text-4xl font-bold text-center dark:text-white">
-        Edit Note
-      </h2>
-      <div className="bg-lime-200 rounded-xl p-2">
+      <h2 className={styles.title}>Edit Note</h2>
+      <div className={styles.wrapper}>
         <textarea
-          className="placeholder:text-gray-200 resize-none leading-7 whitespace-pre-wrap outline-none bg-lime-200 w-full rounded-xl p-4 mb-2"
+          className={styles.area}
           cols={10}
           rows={8}
           placeholder="Just start type..."
@@ -61,10 +68,7 @@ const EditNote = () => {
             }
           }}
         ></textarea>
-        <Button
-          className="bg-emerald-500 text-gray-100 block mx-auto mb-2 w-2/6 md:w-2/12 hover:bg-emerald-600 hover:text-gray-100"
-          noteAction={saveNote}
-        >
+        <Button className={styles.btn} noteAction={saveNote}>
           Save
         </Button>
       </div>

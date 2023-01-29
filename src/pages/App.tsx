@@ -8,7 +8,7 @@ import Layout from "../layout/withLayout";
 import { animated, useSpring } from "@react-spring/web";
 
 const App = () => {
-  const {notes, setNotes} = useNotes();
+  const { notes, setNotes } = useNotes();
   const { theme } = useTheme();
 
   const animation = useSpring({
