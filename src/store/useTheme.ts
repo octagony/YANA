@@ -1,9 +1,6 @@
 import create from "zustand";
+import { ITheme } from "../../types/ITheme";
 
-interface ITheme{
-  theme: string;
-  setTheme: ()=> void;
-}
 
 export const useTheme = create<ITheme>((set) => ({
   theme: localStorage.getItem("theme") ?? "light",

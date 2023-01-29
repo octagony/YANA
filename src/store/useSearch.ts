@@ -1,9 +1,5 @@
 import create from "zustand";
-
-interface ISearch {
-  inputValue: string;
-  setInputValue: (text: string) => void;
-}
+import { ISearch } from "../../types/ISearch";
 
 export const useSearch = create<ISearch>((set) => ({
   inputValue: "",
