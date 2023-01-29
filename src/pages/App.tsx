@@ -1,15 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
-import { useTheme } from "../store/useTheme";
 import { useNotes } from "../store/useNotes";
 import NotesGrid from "../components/NotesGrid/NotesGrid";
 import SearchBar from "../components/SearchBar/SearchBar";
-import Layout from "../layout/withLayout";
+import withLayout from "../layout/withLayout";
 import { animated, useSpring } from "@react-spring/web";
+import { useThemeToggling } from "../hooks/useThemeToggling";
 
 const App = () => {
   const { notes, setNotes } = useNotes();
-  const { theme } = useTheme();
+  const theme = useThemeToggling();
 
   const animation = useSpring({
     x: 0,
@@ -22,15 +22,6 @@ const App = () => {
     setNotes(notes);
   }, [notes, setNotes]);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.remove("dark");
-    } else {
-      root.classList.add("dark");
-    }
-  }, [theme]);
-
   return (
     <animated.div style={animation}>
       <SearchBar />
@@ -39,4 +30,4 @@ const App = () => {
   );
 };
 
-export default Layout(App);
+export default withLayout(App);

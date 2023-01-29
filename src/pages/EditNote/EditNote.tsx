@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import withLayout from "../../layout/withLayout";
 import { useNotes } from "../../store/useNotes";
-import { useTheme } from "../../store/useTheme";
 import Button from "../../UI/Button";
 import { animated, useSpring } from "@react-spring/web";
 import { INote } from "../../../types/INotes";
 import styles from "./EditNote.module.css";
+import { useThemeToggling } from "../../hooks/useThemeToggling";
 
 const EditNote = () => {
   const { id } = useParams();
@@ -20,22 +20,13 @@ const EditNote = () => {
   });
 
   const { notes, setNotes } = useNotes();
-  const { theme } = useTheme();
   const { editNote } = useNotes();
+  const  theme  = useThemeToggling();
 
   const note = notes.find((note: INote) => note.id === id);
   const [handleChange, setHandleChange] = useState<string>(
     note?.text as string
   );
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "light") {
-      root.classList.remove("dark");
-    } else {
-      root.classList.add("dark");
-    }
-  }, [theme]);
 
   useEffect(() => {
     setNotes(notes);

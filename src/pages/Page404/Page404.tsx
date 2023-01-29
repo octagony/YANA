@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useThemeToggling } from "../../hooks/useThemeToggling";
 import withLayout from "../../layout/withLayout";
-import { useTheme } from "../../store/useTheme";
-import styles from "./Page404.module.css"
+import styles from "./Page404.module.css";
 
 const Page404 = () => {
-  const {theme} = useTheme();
-
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "light") root.classList.remove("dark");
-    else root.classList.add("dark");
-  }, [theme]);
+  const theme = useThemeToggling();
 
   return (
     <div className={styles.wrapper}>
