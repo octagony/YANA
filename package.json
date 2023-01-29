@@ -13,7 +13,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.6.2",
-    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.0",
     "zustand": "^4.3.2"
   },
@@ -21,10 +20,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "eslint src && tsc && vite build"
   },
   "browserslist": {
     "production": [
@@ -41,11 +38,13 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "@vitejs/plugin-react": "^3.0.1",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.33.0",
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   }
 }

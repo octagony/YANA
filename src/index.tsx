@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./src/pages/App";
-import EditNote from "./src/pages/EditNote.js";
-import Page404 from "./src/pages/Page404.js";
+import App from "./pages/App";
+import EditNote from "./pages/EditNote.js";
+import Page404 from "./pages/Page404.js";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider,
-  Routes,
   Route,
-  useLocation,
 } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
