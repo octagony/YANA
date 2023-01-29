@@ -1,12 +1,13 @@
 import React from "react";
-import { useSearch } from "../store/useSearch";
+import { useSearch } from "../../store/useSearch";
+import styles from "./SearchBar.module.css"
 
 const SearchBar = () => {
   const {inputValue, setInputValue} = useSearch();
   return (
-    <div className="mb-8">
+    <div className={styles.wrapper}>
       <input
-        className="w-full from-neutral-900 outline-none py-3 px-5 rounded-3xl"
+        className={styles.input}
         type="search"
         placeholder="Search in notes..."
         value={inputValue}

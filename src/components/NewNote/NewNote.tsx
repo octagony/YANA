@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNotes } from "../store/useNotes";
-import Button from "../UI/Button";
+import { useNotes } from "../../store/useNotes";
+import Button from "../../UI/Button";
+import styles from "./NewNote.module.css"
 
 const NewNote = () => {
   const {notes, addNote} = useNotes();
@@ -22,9 +23,9 @@ const NewNote = () => {
   };
 
   return (
-    <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
+    <div className={styles.wrapper}>
       <textarea
-        className="placeholder:text-neutral-100 leading-7 resize-none whitespace-pre-wrap outline-none bg-emerald-500 p-4"
+        className={styles.area}
         cols={10}
         rows={8}
         placeholder="Just start type..."
@@ -36,19 +37,19 @@ const NewNote = () => {
           }
         }}
       ></textarea>
-      <div className="ml-auto">
+      <div className={styles.saveBtn}>
         <Button noteAction={saveNote}>Save</Button>
       </div>
       {isSaveButtons ? (
-        <p className="text-sm text-center py-2 ">
-          <code className="p-2 border-2 rounded-xl bg-white shadow-xl border-white">
+        <p className={styles.infoBtns}>
+          <code className={styles.mainBtn}>
             Ctrl
           </code>
-          <code className="p-2 ">+</code>
-          <code className="p-2 border-2 rounded-xl bg-white shadow-xl border-white">
+          <code className={styles.secondBtn}>+</code>
+          <code className={styles.mainBtn}>
             Enter
           </code>
-          <code className="p-2 ">for save</code>
+          <code className={styles.secondBtn}>for save</code>
         </p>
       ) : (
         ""

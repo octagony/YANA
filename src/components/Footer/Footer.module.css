@@ -1,0 +1,15 @@
+.footer{
+   @apply my-5 text-neutral-900 text-center
+}
+
+.link{
+   @apply inline-block
+}
+
+.icon{
+    @apply mx-auto
+}
+
+:global(.dark) .footer {
+    @apply text-white
+  }

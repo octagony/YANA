@@ -1,12 +1,12 @@
 import React from "react";
 import { HiSun, HiMoon } from "react-icons/hi";
-import { useTheme } from "../store/useTheme";
+import { useTheme } from "../../store/useTheme";
+import styles from "./ThemeToggle.module.css";
 
 const ThemeToggle = () => {
-  const {theme, setTheme} = useTheme();
+  const { theme, setTheme } = useTheme();
   return (
-    <button className="p-2 cursor-pointer dark:text-white" onClick={setTheme} aria-label="Theme Toggle"
-    >
+    <button className={styles.button} onClick={setTheme} aria-label="Theme Toggle">
       {theme === "light" ? <HiSun size={25} /> : <HiMoon size={25} />}
     </button>
   );

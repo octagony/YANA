@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useTheme } from "../store/useTheme";
 import { useNotes } from "../store/useNotes";
-import NotesGrid from "../components/NotesGrid";
-import SearchBar from "../components/SearchBar";
+import NotesGrid from "../components/NotesGrid/NotesGrid";
+import SearchBar from "../components/SearchBar/SearchBar";
 import Layout from "../layout/withLayout";
 import { animated, useSpring } from "@react-spring/web";
 

@@ -5,6 +5,7 @@ import { useNotes } from "../store/useNotes";
 import { useTheme } from "../store/useTheme";
 import Button from "../UI/Button";
 import { animated, useSpring } from "@react-spring/web";
+import { INote } from "../../types/INotes";
 
 const EditNote = () => {
   const { id } = useParams();
@@ -20,9 +21,9 @@ const EditNote = () => {
   const { theme } = useTheme();
   const { editNote } = useNotes();
 
-  const note = notes.find((note) => note.id === id);
+  const note = notes.find((note:INote) => note.id === id);
 
-  const [handleChange, setHandleChange] = useState<string>(note.text);
+  const [handleChange, setHandleChange] = useState<string>(note?.text as string);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -38,7 +39,7 @@ const EditNote = () => {
   }, [notes, setNotes]);
 
   const saveNote = () => {
-    editNote(id, handleChange);
+    editNote(id as string, handleChange);
   };
 
   return (
