@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./pages/App";
-import EditNote from "./pages/EditNote.jsx";
-import Page404 from "./pages/Page404.jsx";
+import App from "./src/pages/App";
+import EditNote from "./src/pages/EditNote.js";
+import Page404 from "./src/pages/Page404.js";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,24 +12,8 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { useTransition, animation } from "@react-spring/web";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     errorElement: <Page404 />,
-//   },
-//   {
-//     path: "/edit-note/:id",
-//     element: <EditNote />,
-//     errorElement: <Page404 />,
-//   },
-// ]);
-//
-//
+const root = ReactDOM.createRoot(document.getElementById("root")!);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +27,7 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

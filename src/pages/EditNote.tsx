@@ -16,13 +16,13 @@ const EditNote = () => {
     },
   });
 
-  const [notes, setNotes] = useNotes((state) => [state.notes, state.setNotes]);
-  const theme = useTheme((state) => state.theme);
-  const editNote = useNotes((state) => state.editNote);
+  const { notes, setNotes } = useNotes();
+  const { theme } = useTheme();
+  const { editNote } = useNotes();
 
   const note = notes.find((note) => note.id === id);
 
-  const [handleChange, setHandleChange] = useState(note.text);
+  const [handleChange, setHandleChange] = useState<string>(note.text);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -49,8 +49,8 @@ const EditNote = () => {
       <div className="bg-lime-200 rounded-xl p-2">
         <textarea
           className="placeholder:text-gray-200 resize-none leading-7 whitespace-pre-wrap outline-none bg-lime-200 w-full rounded-xl p-4 mb-2"
-          cols="10"
-          rows="8"
+          cols={10}
+          rows={8}
           placeholder="Just start type..."
           value={handleChange}
           onChange={(event) => setHandleChange(event.target.value)}

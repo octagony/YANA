@@ -3,10 +3,10 @@ import { useNotes } from "../store/useNotes";
 import Button from "../UI/Button";
 
 const NewNote = () => {
-  const [notes, addNote] = useNotes((state) => [state.notes, state.addNote]);
-  const [textNote, setTextNote] = useState("");
+  const {notes, addNote} = useNotes();
+  const [textNote, setTextNote] = useState<string>("");
 
-  const [isSaveButtons, setIsSaveButton] = useState(
+  const [isSaveButtons, setIsSaveButton] = useState<boolean>(
     notes.length > 0 ? false : true
   );
 
@@ -25,8 +25,8 @@ const NewNote = () => {
     <div className="bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap">
       <textarea
         className="placeholder:text-neutral-100 leading-7 resize-none whitespace-pre-wrap outline-none bg-emerald-500 p-4"
-        cols="10"
-        rows="8"
+        cols={10}
+        rows={8}
         placeholder="Just start type..."
         value={textNote}
         onChange={(event) => setTextNote(event.target.value)}

@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect } from "react";
 import { useTheme } from "../store/useTheme";
 import { useNotes } from "../store/useNotes";
@@ -7,8 +8,8 @@ import Layout from "../layout/withLayout";
 import { animated, useSpring } from "@react-spring/web";
 
 const App = () => {
-  const [notes, setNotes] = useNotes((state) => [state.notes, state.setNotes]);
-  const theme = useTheme((state) => state.theme);
+  const {notes, setNotes} = useNotes();
+  const { theme } = useTheme();
 
   const animation = useSpring({
     x: 0,

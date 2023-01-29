@@ -2,10 +2,7 @@ import React from "react";
 import { useSearch } from "../store/useSearch";
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useSearch((state) => [
-    state.inputValue,
-    state.setInputValue,
-  ]);
+  const {inputValue, setInputValue} = useSearch();
   return (
     <div className="mb-8">
       <input

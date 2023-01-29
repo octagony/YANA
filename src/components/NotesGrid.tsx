@@ -5,8 +5,8 @@ import { useNotes } from "../store/useNotes";
 import { useSearch } from "../store/useSearch";
 
 const NotesGrid = () => {
-  const notes = useNotes((state) => state.notes);
-  const inputValue = useSearch((state) => state.inputValue);
+  const {notes} = useNotes();
+  const {inputValue} = useSearch();
 
   return (
     <main className="grid md:grid-cols-2 gap-5">

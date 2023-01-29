@@ -4,7 +4,7 @@ import withLayout from "../layout/withLayout";
 import { useTheme } from "../store/useTheme";
 
 const Page404 = () => {
-  const theme = useTheme((state) => state.theme);
+  const {theme} = useTheme();
 
   useEffect(() => {
     const root = document.documentElement;

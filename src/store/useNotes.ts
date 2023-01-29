@@ -1,13 +1,27 @@
 import create from "zustand";
 import { nanoid } from "nanoid";
 
+interface INote{
+  text:string;
+  id:string;
+  date:string;
+}
+
+interface INotes {
+  notes: INote[];
+  setNotes: (notes: INote[]) => void;
+  addNote: (text: string) => void;
+  deleteNote: (id: string) => void;
+  editNote: (id: string, value: string) => void;
+}
+
 const getLocalStorage = (key) => JSON.parse(localStorage.getItem(key));
 
 const setLocalStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const useNotes = create((set) => ({
+export const useNotes = create<INotes>((set) => ({
   notes: getLocalStorage("notes-data") ?? [],
   setNotes: (notes) => {
     set(() => {

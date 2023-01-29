@@ -1,6 +1,11 @@
 import create from "zustand";
 
-export const useTheme = create((set) => ({
+interface ITheme{
+  theme: string;
+  setTheme: ()=> void;
+}
+
+export const useTheme = create<ITheme>((set) => ({
   theme: localStorage.getItem("theme") ?? "light",
   setTheme: () =>
     set((state) => {
