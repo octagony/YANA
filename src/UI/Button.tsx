@@ -1,12 +1,13 @@
 import React from "react";
-import { IButton } from "./Button.types";
+import { IButton } from "./Button.props";
+import styles from "./Button.module.css";
 
 const Button = ({ children, noteAction, className }: IButton) => {
   return (
     <button
-      className={`mt-2 p-2 bg-emerald-600 text-xl text-gray-200  bg-transparent border-2 rounded-2xl shadow-lg transition hover:bg-lime-200 hover:text-neutral-900 ${className}`}
+      className={`${styles.btn} ${className}`}
       onClick={noteAction}
-      aria-label="Save"
+      aria-label="Save button"
     >
       {children}
     </button>

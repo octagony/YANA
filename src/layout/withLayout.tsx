@@ -1,13 +1,10 @@
-import React,{ ComponentType, ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import styles from "./withLayout.module.css"
+import styles from "./withLayout.module.css";
+import { ILayout } from "./withLayout.props";
 
-interface IChildren{
-  children?: ReactNode
-}
-
-export function withLayout<T extends IChildren>(Component: ComponentType<T>) {
+export function withLayout<T extends ILayout>(Component: ComponentType<T>) {
   return (hocProps: T) => {
     return (
       <div className={styles.wrapper}>
