@@ -1,9 +1,9 @@
 import create from "zustand";
 import { nanoid } from "nanoid";
-import {INotes, INote}  from '../../types/INotes'
+import { INotes, INote } from "../../types/INotes";
 
-
-const getLocalStorage = (key: string) => JSON.parse(localStorage.getItem(key)|| '[]');
+const getLocalStorage = (key: string) =>
+  JSON.parse(localStorage.getItem(key) || "[]");
 
 const setLocalStorage = (key: string, value: INote[]) => {
   localStorage.setItem(key, JSON.stringify(value));

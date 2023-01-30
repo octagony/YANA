@@ -9,5 +9,5 @@ export const useThemeToggling = () => {
     else root.classList.add("dark");
   }, [theme]);
 
-  return theme;
+  return [theme] as const;
 };
