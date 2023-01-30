@@ -43,7 +43,7 @@ const EditNote = () => {
   useEffect(() => {
     const tooltopTimeout = setTimeout(() => {
       setIsTooltipShow(false);
-    }, 2500);
+    }, 1000);
     return () => clearTimeout(tooltopTimeout);
   }, [isTooltipShow]);
 
