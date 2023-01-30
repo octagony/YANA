@@ -1,0 +1,7 @@
+.wrapper {
+  @apply mb-8;
+}
+
+.input {
+  @apply w-full from-neutral-900 outline-none py-3 px-5 rounded-3xl;
+}

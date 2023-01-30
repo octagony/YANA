@@ -1,0 +1,23 @@
+.wrapper{
+    @apply bg-emerald-500 rounded-xl p-4 min-h-[170px] flex flex-col justify-between whitespace-pre-wrap
+}
+
+.area{
+    @apply placeholder:text-neutral-100 leading-7 resize-none whitespace-pre-wrap outline-none bg-emerald-500 p-4
+}
+
+.saveBtn{
+    @apply ml-auto
+}
+
+.infoBtns{
+    @apply text-sm text-center py-2
+}
+
+.mainBtn{
+    @apply p-2 border-2 rounded-xl bg-white shadow-xl border-white
+}
+
+.secondBtn{
+    @apply p-2
+}

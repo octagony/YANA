@@ -1,1 +1,3 @@
-# 1-2-3 Notes App w/React
+# YANA
+
+## Yet Another Notes App

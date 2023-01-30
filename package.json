@@ -1,8 +1,9 @@
 {
-  "name": "1-2-3-notes",
+  "name": "yet-another-notes-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-spring/web": "^9.6.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -11,23 +12,17 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.0"
+    "react-router-dom": "^6.6.2",
+    "react-tooltip": "^5.7.1",
+    "web-vitals": "^2.1.0",
+    "zustand": "^4.3.2"
   },
   "homepage": "https://octagony.github.io",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "start": "vite",
+    "build": "eslint src && tsc && vite build"
   },
   "browserslist": {
     "production": [
@@ -42,8 +37,16 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vitejs/plugin-react": "^3.0.1",
     "autoprefixer": "^10.4.7",
+    "eslint": "^8.33.0",
+    "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.4"
+    "tailwindcss": "^3.1.4",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   }
 }
