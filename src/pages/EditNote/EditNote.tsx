@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import withLayout from "../../layout/withLayout";
 import { useNotes } from "../../store/useNotes";
@@ -13,6 +13,7 @@ const EditNote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isTooltipShow, setIsTooltipShow] = useState<boolean>(false);
+  const areaRef = useRef<HTMLTextAreaElement>(null);
 
   const animation = useSpring({
     x: 0,
@@ -33,6 +34,12 @@ const EditNote = () => {
   useEffect(() => {
     setNotes(notes);
   }, [notes, setNotes]);
+
+  useEffect(() => {
+    if (areaRef.current) {
+      areaRef.current.focus();
+    }
+  }, []);
 
   useEffect(() => {
     if (note?.id !== id) {
@@ -66,6 +73,7 @@ const EditNote = () => {
           rows={8}
           placeholder="Just start type..."
           value={handleChange}
+          ref={areaRef}
           onChange={(event) => setHandleChange(event.target.value)}
           onKeyDown={(event) => {
             if (event.ctrlKey && event.key === "Enter") {
