@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import styles from './Textarea.module.css'
-import { PropsTextarea } from './Textarea.props'
+import { ITextarea } from './Textarea.props'
 
-const Textarea = ({ value, ref, changeFunc, keyDownFunc }: PropsTextarea) => {
+const Textarea = forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
+	const { value, changeFunc, keyDownFunc } = props
 	return (
 		<textarea
 			className={styles.area}
@@ -15,6 +16,6 @@ const Textarea = ({ value, ref, changeFunc, keyDownFunc }: PropsTextarea) => {
 			onKeyDown={keyDownFunc}
 		></textarea>
 	)
-}
+})
 
 export default Textarea

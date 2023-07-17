@@ -4,6 +4,7 @@ import React, {
 	useRef,
 	ChangeEvent,
 	KeyboardEvent,
+	createRef,
 } from 'react'
 import { useNotes } from '../../store/useNotes'
 import Button from '../../UI/Button'
@@ -13,7 +14,7 @@ import Textarea from '../Textarea/Textarea'
 const NewNote = () => {
 	const { notes, addNote } = useNotes()
 	const [textNote, setTextNote] = useState<string>('')
-	const areaRef = useRef<HTMLTextAreaElement>(null)
+	const areaRef = createRef<HTMLTextAreaElement>()
 
 	const [isSaveButtons, setIsSaveButton] = useState<boolean>(
 		notes.length > 0 ? false : true
