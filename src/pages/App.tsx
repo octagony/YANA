@@ -1,33 +1,34 @@
-import React from "react";
-import { useEffect } from "react";
-import { useNotes } from "../store/useNotes";
-import NotesGrid from "../components/NotesGrid/NotesGrid";
-import SearchBar from "../components/SearchBar/SearchBar";
-import withLayout from "../layout/withLayout";
-import { animated, useSpring } from "@react-spring/web";
-import { useThemeToggling } from "../hooks/useThemeToggling";
+import React from 'react'
+import { useEffect } from 'react'
+import { useNotes } from '../store/useNotes'
+import NotesGrid from '../components/NotesGrid/NotesGrid'
+import SearchBar from '../components/SearchBar/SearchBar'
+import withLayout from '../layout/withLayout'
+import { animated, useSpring } from '@react-spring/web'
+import { useThemeToggling } from '../hooks/useThemeToggling'
 
 const App = () => {
-  const { notes, setNotes } = useNotes();
-  const theme = useThemeToggling();
+	const { notes, setNotes } = useNotes()
 
-  const animation = useSpring({
-    x: 0,
-    from: {
-      x: -300,
-    },
-  });
+	useThemeToggling()
 
-  useEffect(() => {
-    setNotes(notes);
-  }, [notes, setNotes]);
+	const animation = useSpring({
+		x: 0,
+		from: {
+			x: -300,
+		},
+	})
 
-  return (
-    <animated.div style={animation}>
-      <SearchBar />
-      <NotesGrid />
-    </animated.div>
-  );
-};
+	useEffect(() => {
+		setNotes(notes)
+	}, [notes, setNotes])
 
-export default withLayout(App);
+	return (
+		<animated.div style={animation}>
+			<SearchBar />
+			<NotesGrid />
+		</animated.div>
+	)
+}
+
+export default withLayout(App)
