@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, ChangeEvent } from 'react'
+import React, {
+	useState,
+	useEffect,
+	useRef,
+	ChangeEvent,
+	KeyboardEvent,
+} from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import withLayout from '../../layout/withLayout'
 import { useNotes } from '../../store/useNotes'
@@ -25,10 +31,11 @@ const EditNote = () => {
 
 	const { notes, setNotes } = useNotes()
 	const { editNote } = useNotes()
-	const theme = useThemeToggling()
 
 	const note = notes.find((note: INote) => note.id === id)
 	const [handleChange, setHandleChange] = useState<string>(note?.text as string)
+
+	useThemeToggling()
 
 	useEffect(() => {
 		setNotes(notes)
@@ -66,7 +73,7 @@ const EditNote = () => {
 		setHandleChange(event.target.value)
 	}
 
-	const handleKeyDown = (event: KeyboardEvent) => {
+	const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.ctrlKey && event.key === 'Enter') {
 			saveNote()
 		}
@@ -81,6 +88,7 @@ const EditNote = () => {
 					ref={areaRef}
 					changeFunc={handleChangeTextNote}
 					keyDownFunc={handleKeyDown}
+					editMode={true}
 				/>
 				<Button className={styles.btn} noteAction={saveNote}>
 					Save

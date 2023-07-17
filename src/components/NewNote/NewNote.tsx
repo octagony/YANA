@@ -1,7 +1,6 @@
 import React, {
 	useState,
 	useEffect,
-	useRef,
 	ChangeEvent,
 	KeyboardEvent,
 	createRef,
@@ -54,6 +53,7 @@ const NewNote = () => {
 				ref={areaRef}
 				changeFunc={handleChangeTextNote}
 				keyDownFunc={handleKeyDown}
+				editMode={false}
 			/>
 			<div className={styles.saveBtn}>
 				<Button noteAction={saveNote}>Save</Button>
