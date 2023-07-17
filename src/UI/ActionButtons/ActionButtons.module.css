@@ -1,0 +1,11 @@
+.infoBtns {
+	@apply text-sm mt-6 py-2 text-center hidden md:block;
+}
+
+.mainBtn {
+	@apply p-2 border-2 rounded-xl bg-white shadow-xl border-white;
+}
+
+.secondBtn {
+	@apply p-2;
+}

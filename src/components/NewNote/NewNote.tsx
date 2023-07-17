@@ -6,9 +6,10 @@ import React, {
 	createRef,
 } from 'react'
 import { useNotes } from '../../store/useNotes'
-import Button from '../../UI/Button'
+import Button from '../../UI/Button/Button'
 import styles from './NewNote.module.css'
 import Textarea from '../Textarea/Textarea'
+import ActionButtons from '../../UI/ActionButtons/ActionButtons'
 
 const NewNote = () => {
 	const { notes, addNote } = useNotes()
@@ -58,16 +59,7 @@ const NewNote = () => {
 			<div className={styles.saveBtn}>
 				<Button noteAction={saveNote}>Save</Button>
 			</div>
-			{isSaveButtons ? (
-				<p className={styles.infoBtns}>
-					<code className={styles.mainBtn}>Ctrl</code>
-					<code className={styles.secondBtn}>+</code>
-					<code className={styles.mainBtn}>Enter</code>
-					<code className={styles.secondBtn}>for save</code>
-				</p>
-			) : (
-				''
-			)}
+			{isSaveButtons ? <ActionButtons /> : null}
 		</div>
 	)
 }

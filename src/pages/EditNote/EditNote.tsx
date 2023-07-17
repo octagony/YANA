@@ -8,7 +8,7 @@ import React, {
 import { useNavigate, useParams } from 'react-router-dom'
 import withLayout from '../../layout/withLayout'
 import { useNotes } from '../../store/useNotes'
-import Button from '../../UI/Button'
+import Button from '../../UI/Button/Button'
 import { animated, useSpring } from '@react-spring/web'
 import { INote } from '../../../types/INotes'
 import styles from './EditNote.module.css'
