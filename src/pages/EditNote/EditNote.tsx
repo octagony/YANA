@@ -12,15 +12,15 @@ import Button from '../../UI/Button'
 import { animated, useSpring } from '@react-spring/web'
 import { INote } from '../../../types/INotes'
 import styles from './EditNote.module.css'
-import { useThemeToggling } from '../../hooks/useThemeToggling'
-import { AiOutlineSave } from 'react-icons/ai'
+import { useNotify } from '../../hooks/useNotify'
 import Textarea from '../../components/Textarea/Textarea'
+import { Toaster } from 'react-hot-toast'
 
 const EditNote = () => {
 	const { id } = useParams()
 	const navigate = useNavigate()
-	const [isTooltipShow, setIsTooltipShow] = useState<boolean>(false)
 	const areaRef = useRef<HTMLTextAreaElement>(null)
+	const { notify } = useNotify()
 
 	const animation = useSpring({
 		x: 0,
@@ -34,8 +34,6 @@ const EditNote = () => {
 
 	const note = notes.find((note: INote) => note.id === id)
 	const [handleChange, setHandleChange] = useState<string>(note?.text as string)
-
-	useThemeToggling()
 
 	useEffect(() => {
 		setNotes(notes)
@@ -53,18 +51,12 @@ const EditNote = () => {
 		}
 	}, [])
 
-	useEffect(() => {
-		const tooltopTimeout = setTimeout(() => {
-			setIsTooltipShow(false)
-		}, 1000)
-		return () => clearTimeout(tooltopTimeout)
-	}, [isTooltipShow])
-
 	const saveNote = () => {
 		try {
 			editNote(id as string, handleChange)
-			setIsTooltipShow(true)
+			notify.success()
 		} catch (e) {
+			notify.error()
 			console.error('Error:', e)
 		}
 	}
@@ -93,9 +85,7 @@ const EditNote = () => {
 				<Button className={styles.btn} noteAction={saveNote}>
 					Save
 				</Button>
-				{isTooltipShow ? (
-					<AiOutlineSave className='absolute bottom-6 right-6' size={30} />
-				) : null}
+				<Toaster />
 			</div>
 		</animated.div>
 	)
