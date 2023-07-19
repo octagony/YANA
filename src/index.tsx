@@ -5,6 +5,8 @@ import App from './pages/App'
 import EditNote from './pages/EditNote/EditNote'
 import Page404 from './pages/Page404/Page404'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AuthPage from './pages/SignUp/Auth'
+import SignUpPage from './pages/SignUp/Auth'
 
 const app = document.getElementById('root') as HTMLBodyElement
 
@@ -19,6 +21,11 @@ const router = createBrowserRouter([
 	{
 		path: '/edit-note/:id',
 		element: <EditNote />,
+		errorElement: <Page404 />,
+	},
+	{
+		path: '/signup',
+		element: <SignUpPage />,
 		errorElement: <Page404 />,
 	},
 ])
