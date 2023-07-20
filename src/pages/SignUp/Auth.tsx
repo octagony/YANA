@@ -1,45 +1,31 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
-import authService from '../../services/auth/auth.service'
-import { supabase } from '../../services/auth/auth.helpers'
-import { useAuth } from '../../store/useAuth'
-import { User } from '@supabase/supabase-js'
-import { redirect } from 'react-router-dom'
+import React, { MouseEvent, useEffect, useState } from "react";
+import { supabase } from "../../services/auth/auth.helpers";
+import { Session, User } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const SignUpPage = () => {
-	const [authData, setAuthData] = useState({ email: '', password: '' })
-	const { email, setUser } = useAuth()
+  const [session, setSession] = useState<Session | null>(null);
 
-	const handleSubmit = async (e: MouseEvent) => {
-		e.preventDefault()
-		const { data, error } = await supabase.auth.signUp({
-			email: authData.email,
-			password: authData.password,
-		})
-	}
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
 
-	return (
-		<form>
-			<div>
-				Email
-				<input
-					type='text'
-					onChange={e => {
-						setAuthData({ ...authData, email: e.target.value })
-					}}
-				/>
-			</div>
-			<div>
-				Password
-				<input
-					type='text'
-					onChange={e => {
-						setAuthData({ ...authData, password: e.target.value })
-					}}
-				/>
-			</div>
-			<button onClick={e => handleSubmit(e)}>Click</button>
-		</form>
-	)
-}
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
 
-export default SignUpPage
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!session) {
+    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+  } else {
+    return <div>Logged in!</div>;
+  }
+};
+
+export default SignUpPage;
