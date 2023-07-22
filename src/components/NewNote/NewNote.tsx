@@ -23,11 +23,11 @@ const NewNote = () => {
 	const notePath = doc(db, 'users', `${user?.email}`)
 
 	const [isSaveButtons, setIsSaveButton] = useState<boolean>(
-		notes.length > 0 ? false : true
+		notes?.length > 0 ? false : true
 	)
 
 	useEffect(() => {
-		notes.length > 0 ? setIsSaveButton(false) : setIsSaveButton(true)
+		notes?.length > 0 ? setIsSaveButton(false) : setIsSaveButton(true)
 	}, [notes])
 
 	useEffect(() => {

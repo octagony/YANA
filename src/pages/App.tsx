@@ -17,10 +17,10 @@ import {
 } from 'firebase/firestore'
 import useAuth from '../hooks/useAuth'
 import { useAuthStore } from '../store/auth.store'
+import Loader from '../components/Loader/Loader'
 const App = () => {
 	useThemeToggling()
-	const { user, isLoading, setLoading } = useAuthStore()
-	const { setNotes } = useNotes()
+	const { isLoading } = useAuthStore()
 	const animation = useSpring({
 		x: 0,
 		from: {
@@ -28,24 +28,21 @@ const App = () => {
 		},
 	})
 
-	useEffect(() => {
-		onSnapshot(doc(db, 'users', `${user.email}`), doc => {
-			setLoading(true)
-			console.log(doc?.data()?.watchList)
-			setNotes(doc?.data()?.watchList)
-			setLoading(false)
-		})
-	}, [user.email])
-
 	if (isLoading) {
-		return <div>Loading...</div>
+		return (
+			<div>
+				<Loader />
+			</div>
+		)
 	}
 
 	return (
-		<animated.div style={animation}>
+		<>
 			<SearchBar />
-			<NotesGrid />
-		</animated.div>
+			<animated.div style={animation}>
+				<NotesGrid />
+			</animated.div>
+		</>
 	)
 }
 
