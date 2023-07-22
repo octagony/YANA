@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
 
 export interface IButton {
-  children: ReactNode;
-  noteAction: () => void;
-  className?: string;
+	children: ReactNode
+	action?: () => void
+	className?: string
+	ariaLabel: 'Save note' | 'Logout'
 }

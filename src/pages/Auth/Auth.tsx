@@ -1,15 +1,33 @@
-import React, { MouseEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import withLayout from '../../layout/withLayout'
 import { useThemeToggling } from '../../hooks/useThemeToggling'
+import { IUser } from '../../../types/IUser'
+import useAuth from '../../hooks/useAuth'
+import { useAuthStore } from '../../store/auth.store'
 
 const AuthPage = () => {
 	const [authState, setAuthState] = useState<'signup' | 'signin'>('signin')
+	const [userData, setUserData] = useState<IUser>({
+		email: '',
+		password: '',
+	} as IUser)
+	const { signUp, login } = useAuth()
+	const { error, isLoading } = useAuthStore()
 
 	const toggleAuth = () => {
 		setAuthState(prev => (prev === 'signin' ? 'signup' : 'signin'))
 	}
 
 	useThemeToggling()
+
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		if (authState === 'signup') {
+			signUp(userData.email, userData.password)
+		} else {
+			login(userData.email, userData.password)
+		}
+	}
 
 	return (
 		<div>
@@ -22,8 +40,12 @@ const AuthPage = () => {
 					<h2 className='text-center font-semibold text-3xl lg:text-4xl text-gray-800'>
 						{authState === 'signup' ? 'Sign Up' : 'Login'}
 					</h2>
-
-					<form className='mt-10' method='POST'>
+					{error && <div className='text-red-500 mt-2'>{error}</div>}
+					<form
+						className='mt-10'
+						method='POST'
+						onSubmit={event => handleSubmit(event)}
+					>
 						<label
 							htmlFor='email'
 							className='block text-xs font-semibold text-gray-600 uppercase'
@@ -40,6 +62,10 @@ const AuthPage = () => {
 									border-b-2 border-gray-100
 									focus:text-gray-500 focus:outline-none focus:border-gray-200'
 							required
+							value={userData.email}
+							onChange={e =>
+								setUserData({ ...userData, email: e.target.value })
+							}
 						/>
 
 						<label
@@ -58,6 +84,10 @@ const AuthPage = () => {
 									border-b-2 border-gray-100
 									focus:text-gray-500 focus:outline-none focus:border-gray-200'
 							required
+							value={userData.password}
+							onChange={e =>
+								setUserData({ ...userData, password: e.target.value })
+							}
 						/>
 
 						<button
@@ -65,8 +95,13 @@ const AuthPage = () => {
 							className='w-full py-3 mt-10 bg-gray-800 rounded-sm
 									font-medium text-white uppercase
 									focus:outline-none hover:bg-gray-700 hover:shadow-none'
+							disabled={isLoading}
 						>
-							{authState === 'signup' ? 'Sign Up' : 'Login'}
+							{isLoading
+								? 'Loading...'
+								: authState === 'signup'
+								? 'Sign Up'
+								: 'Login'}
 						</button>
 
 						<div className='sm:flex sm:flex-wrap mt-8 sm:mb-4 text-sm text-center gap-2'>

@@ -2,8 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import styles from './Header.module.css'
+import Button from '../../UI/Button/Button'
+import { useAuthStore } from '../../store/auth.store'
+import useAuth from '../../hooks/useAuth'
 
 const Header = () => {
+	const { user } = useAuthStore()
+	const { logout } = useAuth()
 	return (
 		<header className={styles.header}>
 			<div>
@@ -12,7 +17,16 @@ const Header = () => {
 				</Link>
 				<span className={styles.subtitle}>Yet Another Notes App</span>
 			</div>
-			<ThemeToggle />
+			<div className='flex items-center gap-4'>
+				{user.email ? (
+					<button onClick={logout}>Logout</button>
+				) : (
+					<Link to='/auth'>
+						<button>Login</button>
+					</Link>
+				)}
+				<ThemeToggle />
+			</div>
 		</header>
 	)
 }
