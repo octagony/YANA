@@ -4,10 +4,10 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 } from 'firebase/auth'
-import { useState } from 'react'
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth.store'
+import { doc, setDoc } from 'firebase/firestore'
 
 const useAuth = () => {
 	const { setUser, user, error, isLoading, setLoading, setError } =
@@ -17,10 +17,11 @@ const useAuth = () => {
 	const signUp = async (email: string, password: string) => {
 		setLoading(true)
 		try {
-			await signInWithEmailAndPassword(auth, email, password).then(data => {
+			await createUserWithEmailAndPassword(auth, email, password).then(data => {
 				setUser(data.user)
-				setLoading(false)
-				navigator('/')
+				return setDoc(doc(db, 'users', email), {
+					watchList: [],
+				})
 			})
 		} catch (error) {
 			const result = error as Error

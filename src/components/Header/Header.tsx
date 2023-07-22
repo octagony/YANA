@@ -18,7 +18,7 @@ const Header = () => {
 				<span className={styles.subtitle}>Yet Another Notes App</span>
 			</div>
 			<div className='flex items-center gap-4'>
-				{user.email ? (
+				{user?.email ? (
 					<button onClick={logout}>Logout</button>
 				) : (
 					<Link to='/auth'>
