@@ -11,7 +11,7 @@ import styles from './NewNote.module.css'
 import Textarea from '../Textarea/Textarea'
 import ActionButtons from '../../UI/ActionButtons/ActionButtons'
 import { useAuthStore } from '../../store/auth.store'
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { nanoid } from 'nanoid'
 
@@ -40,14 +40,15 @@ const NewNote = () => {
 		if (textNote.trim().length > 0) {
 			setLoading(true)
 			if (user.email) {
-				await updateDoc(notePath, {
+				await updateDoc(doc(db, 'users', `${user.email}`), {
 					watchList: arrayUnion({
 						id: nanoid(),
-						text: textNote,
 						date: Date.now().toLocaleString(),
+						text: textNote,
 					}),
 				})
 			}
+			setLoading(false)
 			setTextNote('')
 		}
 	}

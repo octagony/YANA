@@ -82,7 +82,7 @@ const EditNote = () => {
 					keyDownFunc={handleKeyDown}
 					editMode={true}
 				/>
-				<Button className={styles.btn} noteAction={saveNote}>
+				<Button className={styles.btn} action={saveNote}>
 					Save
 				</Button>
 				<Toaster />

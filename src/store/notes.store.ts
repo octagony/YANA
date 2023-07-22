@@ -27,20 +27,21 @@ const setLocalStorage = (key: string, value: INote[]) => {
 export const useNotes = create<INotes>(set => ({
 	notes: [],
 	setNotes: notes => {
-		set(state => ({ ...state, notes }))
+		console.log(notes)
+		set(state => {
+			state.notes = notes
+			return {
+				notes,
+			}
+		})
 	},
-	addNote: async text => {
-		// setLoading(true)
-		// if (user.email) {
-		// 	await updateDoc(notePath, {
-		// 		watchList: arrayUnion({
-		// 			id: nanoid(),
-		// 			text,
-		// 			date: Date.now().toLocaleString(),
-		// 		}),
-		// 	})
-		// }
-	},
+	addNote: text =>
+		set(state => ({
+			notes: [
+				{ text, id: nanoid(), date: new Date().toLocaleDateString() },
+				...state.notes,
+			],
+		})),
 	deleteNote: id => {
 		set(state => ({
 			notes: state.notes.filter(note => note.id !== id),
