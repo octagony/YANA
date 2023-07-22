@@ -25,14 +25,9 @@ const setLocalStorage = (key: string, value: INote[]) => {
 }
 
 export const useNotes = create<INotes>(set => ({
-	notes: getLocalStorage('notes-data'),
+	notes: [],
 	setNotes: notes => {
-		set(() => {
-			setLocalStorage('notes-data', notes)
-			return {
-				notes,
-			}
-		})
+		set(state => ({ ...state, notes }))
 	},
 	addNote: async text => {
 		// setLoading(true)

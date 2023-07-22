@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import NewNote from '../NewNote/NewNote'
 import Note from '../Note/Note'
 import { useNotes } from '../../store/notes.store'
 import { useSearch } from '../../store/search.store'
 import styles from './NotesGrid.module.css'
+import { useAuthStore } from '../../store/auth.store'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../../firebase/config'
 
 const NotesGrid = () => {
-	const { notes } = useNotes()
+	const { user } = useAuthStore()
+	const { notes, setNotes } = useNotes()
+	useEffect(() => {
+		onSnapshot(doc(db, 'users', `${user.email}`), doc => {
+			setNotes(doc.data()?.watchList)
+		})
+	}, [])
 	const { inputValue } = useSearch()
 
 	return (
