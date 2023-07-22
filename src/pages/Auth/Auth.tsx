@@ -4,6 +4,7 @@ import { useThemeToggling } from '../../hooks/useThemeToggling'
 import { IUser } from '../../../types/IUser'
 import useAuth from '../../hooks/useAuth'
 import { useAuthStore } from '../../store/auth.store'
+import { useNavigate } from 'react-router-dom'
 
 const AuthPage = () => {
 	const [authState, setAuthState] = useState<'signup' | 'signin'>('signin')

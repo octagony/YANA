@@ -1,6 +1,10 @@
-import {create} from 'zustand'
+import { create } from 'zustand'
 import { nanoid } from 'nanoid'
 import { INotes, INote } from '../../types/INotes'
+import { useAuthStore } from './auth.store'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { db } from '../firebase/config'
+import { update } from '@react-spring/web'
 
 const getLocalStorage = (key: string) => {
 	try {
@@ -30,13 +34,18 @@ export const useNotes = create<INotes>(set => ({
 			}
 		})
 	},
-	addNote: text =>
-		set(state => ({
-			notes: [
-				{ text, id: nanoid(), date: new Date().toLocaleDateString() },
-				...state.notes,
-			],
-		})),
+	addNote: async text => {
+		// setLoading(true)
+		// if (user.email) {
+		// 	await updateDoc(notePath, {
+		// 		watchList: arrayUnion({
+		// 			id: nanoid(),
+		// 			text,
+		// 			date: Date.now().toLocaleString(),
+		// 		}),
+		// 	})
+		// }
+	},
 	deleteNote: id => {
 		set(state => ({
 			notes: state.notes.filter(note => note.id !== id),

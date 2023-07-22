@@ -4,7 +4,10 @@ import './index.css'
 import App from './pages/App'
 import EditNote from './pages/EditNote/EditNote'
 import Page404 from './pages/Page404/Page404'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {
+	createBrowserRouter,
+	RouterProvider,
+} from 'react-router-dom'
 import AuthPage from './pages/Auth/Auth'
 
 const app = document.getElementById('root') as HTMLBodyElement

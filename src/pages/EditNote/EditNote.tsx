@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import withLayout from '../../layout/withLayout'
-import { useNotes } from '../../store/useNotes'
+import { useNotes } from '../../store/notes.store'
 import Button from '../../UI/Button/Button'
 import { animated, useSpring } from '@react-spring/web'
 import { INote } from '../../../types/INotes'

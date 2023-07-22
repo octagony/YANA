@@ -19,9 +19,10 @@ const useAuth = () => {
 		try {
 			await createUserWithEmailAndPassword(auth, email, password).then(data => {
 				setUser(data.user)
-				return setDoc(doc(db, 'users', email), {
+				setDoc(doc(db, 'users', email), {
 					watchList: [],
 				})
+				navigator('/')
 			})
 		} catch (error) {
 			const result = error as Error

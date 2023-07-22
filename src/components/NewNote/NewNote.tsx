@@ -5,16 +5,22 @@ import React, {
 	KeyboardEvent,
 	createRef,
 } from 'react'
-import { useNotes } from '../../store/useNotes'
+import { useNotes } from '../../store/notes.store'
 import Button from '../../UI/Button/Button'
 import styles from './NewNote.module.css'
 import Textarea from '../Textarea/Textarea'
 import ActionButtons from '../../UI/ActionButtons/ActionButtons'
+import { useAuthStore } from '../../store/auth.store'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
+import { nanoid } from 'nanoid'
 
 const NewNote = () => {
 	const { notes, addNote } = useNotes()
+	const { user, setLoading } = useAuthStore()
 	const [textNote, setTextNote] = useState<string>('')
 	const areaRef = createRef<HTMLTextAreaElement>()
+	const notePath = doc(db, 'users', `${user?.email}`)
 
 	const [isSaveButtons, setIsSaveButton] = useState<boolean>(
 		notes.length > 0 ? false : true
@@ -30,9 +36,18 @@ const NewNote = () => {
 		}
 	}, [])
 
-	const saveNote = () => {
+	const saveNote = async () => {
 		if (textNote.trim().length > 0) {
-			addNote(textNote)
+			setLoading(true)
+			if (user.email) {
+				await updateDoc(notePath, {
+					watchList: arrayUnion({
+						id: nanoid(),
+						text: textNote,
+						date: Date.now().toLocaleString(),
+					}),
+				})
+			}
 			setTextNote('')
 		}
 	}
@@ -57,7 +72,9 @@ const NewNote = () => {
 				editMode={false}
 			/>
 			<div className={styles.saveBtn}>
-				<Button noteAction={saveNote}>Save</Button>
+				<Button action={saveNote} ariaLabel='Save note'>
+					Save
+				</Button>
 			</div>
 			{isSaveButtons ? <ActionButtons /> : null}
 		</div>

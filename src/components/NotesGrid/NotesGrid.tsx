@@ -1,7 +1,7 @@
 import React from 'react'
 import NewNote from '../NewNote/NewNote'
 import Note from '../Note/Note'
-import { useNotes } from '../../store/useNotes'
+import { useNotes } from '../../store/notes.store'
 import { useSearch } from '../../store/search.store'
 import styles from './NotesGrid.module.css'
 
