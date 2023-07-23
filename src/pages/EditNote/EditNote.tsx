@@ -4,19 +4,34 @@ import React, {
 	useRef,
 	ChangeEvent,
 	KeyboardEvent,
+	useContext,
 } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import withLayout from '../../layout/withLayout'
 import { useNotes } from '../../store/notes.store'
 import Button from '../../UI/Button/Button'
 import { animated, useSpring } from '@react-spring/web'
-import { INote } from '../../../types/INotes'
+import { INote, INotes } from '../../../types/INotes'
 import styles from './EditNote.module.css'
 import { useNotify } from '../../hooks/useNotify'
 import Textarea from '../../components/Textarea/Textarea'
 import { Toaster } from 'react-hot-toast'
+import {
+	arrayUnion,
+	doc,
+	updateDoc,
+	query,
+	where,
+	collection,
+	getDoc,
+	onSnapshot,
+	getFirestore,
+} from 'firebase/firestore'
+import { AuthContext } from '../../context/auth.context'
+import { db } from '../../firebase/config'
 
 const EditNote = () => {
+	const { user } = useContext(AuthContext)
 	const { id } = useParams()
 	const navigate = useNavigate()
 	const areaRef = useRef<HTMLTextAreaElement>(null)
@@ -36,24 +51,19 @@ const EditNote = () => {
 	const [handleChange, setHandleChange] = useState<string>(note?.text as string)
 
 	useEffect(() => {
-		setNotes(notes)
-	}, [notes, setNotes])
-
-	useEffect(() => {
 		if (areaRef.current) {
 			areaRef.current.focus()
 		}
 	}, [])
 
-	useEffect(() => {
-		if (note?.id !== id) {
-			navigate('/')
-		}
-	}, [])
+	// useEffect(() => {
+	// 	if (note?.id !== id) {
+	// 		navigate('/')
+	// 	}
+	// }, [])
 
-	const saveNote = () => {
+	const saveNote = async () => {
 		try {
-			editNote(id as string, handleChange)
 			notify.success()
 		} catch (e) {
 			notify.error()
@@ -82,7 +92,7 @@ const EditNote = () => {
 					keyDownFunc={handleKeyDown}
 					editMode={true}
 				/>
-				<Button className={styles.btn} action={saveNote}>
+				<Button ariaLabel='Save note' className={styles.btn} action={saveNote}>
 					Save
 				</Button>
 				<Toaster />

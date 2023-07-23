@@ -1,10 +1,6 @@
 import { create } from 'zustand'
 import { nanoid } from 'nanoid'
 import { INotes, INote } from '../../types/INotes'
-import { useAuthStore } from './auth.store'
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
-import { db } from '../firebase/config'
-import { update } from '@react-spring/web'
 
 const getLocalStorage = (key: string) => {
 	try {
@@ -29,6 +25,7 @@ export const useNotes = create<INotes>(set => ({
 	setNotes: notes => {
 		console.log(notes)
 		set(state => {
+			setLocalStorage('notes-data', notes)
 			state.notes = notes
 			return {
 				notes,

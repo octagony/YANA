@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		onAuthStateChanged(auth, user => {
 			if (user) {
 				setUser(user)
-				navigator('/')
+				// navigator('/')
 			} else {
 				setLoading(false)
 				setUser({} as User)
