@@ -48,7 +48,7 @@ const NewNote = () => {
 		if (textNote.trim().length > 0) {
 			setLoading(true)
 			if (user.uid) {
-				const currentDate = new Date().getTime().toString()
+				const currentDate = new Date().toString()
 				await addDoc(notesCollectionRef, {
 					id: nanoid(),
 					text: textNote,

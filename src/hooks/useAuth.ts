@@ -4,10 +4,9 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 } from 'firebase/auth'
-import { auth, db } from '../firebase/config'
+import { auth } from '../firebase/config'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth.store'
-import { doc, setDoc } from 'firebase/firestore'
 
 const useAuth = () => {
 	const { setUser, user, error, isLoading, setLoading, setError } =
@@ -18,10 +17,10 @@ const useAuth = () => {
 		setLoading(true)
 		try {
 			await createUserWithEmailAndPassword(auth, email, password).then(data => {
-				setUser(data.user)
-				// setDoc(doc(db, 'users', email), {
-				// 	watchList: [],
-				// })
+				setUser({
+					email: data.user.email,
+					uid: data.user.uid,
+				})
 				navigator('/')
 			})
 		} catch (error) {
@@ -36,7 +35,10 @@ const useAuth = () => {
 		setLoading(true)
 		try {
 			await signInWithEmailAndPassword(auth, email, password).then(data => {
-				setUser(data.user)
+				setUser({
+					email: data.user.email,
+					uid: data.user.uid,
+				})
 				setLoading(false)
 				navigator('/')
 			})

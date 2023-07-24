@@ -2,22 +2,18 @@ import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { AiFillEdit } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import { useNotes } from '../../store/notes.store'
 import { INote } from '../../../types/INotes'
 import styles from './Note.module.css'
-import {
-	collection,
-	deleteDoc,
-	doc,
-	query,
-	updateDoc,
-} from 'firebase/firestore'
+import { collection, deleteDoc, doc } from 'firebase/firestore'
+import * as dayjs from 'dayjs'
 import { db } from '../../firebase/config'
 import { useAuthStore } from '../../store/auth.store'
 
 const Note = ({ id, text, date }: INote) => {
 	const { user, setError, setLoading } = useAuthStore()
 	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
+
+	console.log(dayjs(Date.now()).format('MM/DD/YYYY HH:MM:SS A'))
 
 	const deleteNote = async (id: string) => {
 		try {
@@ -34,7 +30,7 @@ const Note = ({ id, text, date }: INote) => {
 		<div className={styles.wrapper}>
 			<span>{text.length > 50 ? `${text.slice(0, 50)}...` : text}</span>
 			<div className={styles.info}>
-				<p>{date}</p>
+				<p>{dayjs(date).format('MM/DD/YYYY HH:MM:ss A')}</p>
 				<div className={styles.iconsWrapper}>
 					<Link className={styles.icon} to={`/edit-note/${id}`}>
 						<AiFillEdit size={25} />
