@@ -5,20 +5,24 @@ import { Link } from 'react-router-dom'
 import { useNotes } from '../../store/notes.store'
 import { INote } from '../../../types/INotes'
 import styles from './Note.module.css'
-import { doc, updateDoc } from 'firebase/firestore'
+import {
+	collection,
+	deleteDoc,
+	doc,
+	query,
+	updateDoc,
+} from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { useAuthStore } from '../../store/auth.store'
 
 const Note = ({ id, text, date }: INote) => {
 	const { user, setError, setLoading } = useAuthStore()
-	const { notes } = useNotes()
+	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
+
 	const deleteNote = async (id: string) => {
 		try {
 			setLoading(true)
-			const result = notes.filter(note => note.id !== id)
-			await updateDoc(doc(db, 'users', `${user.email}`), {
-				watchList: result,
-			})
+			await deleteDoc(doc(notesCollectionRef, id))
 		} catch (error) {
 			const err = error as Error
 			setError(err.message)

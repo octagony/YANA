@@ -29,13 +29,19 @@ import {
 } from 'firebase/firestore'
 import { AuthContext } from '../../context/auth.context'
 import { db } from '../../firebase/config'
+import useAuth from '../../hooks/useAuth'
+import { useAuthStore } from '../../store/auth.store'
 
 const EditNote = () => {
-	const { user } = useContext(AuthContext)
+	const { user, isLoading } = useContext(AuthContext)
+	const { notes } = useNotes()
 	const { id } = useParams()
+	const { setLoading } = useAuthStore()
 	const navigate = useNavigate()
 	const areaRef = useRef<HTMLTextAreaElement>(null)
 	const { notify } = useNotify()
+
+	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
 
 	const animation = useSpring({
 		x: 0,
@@ -43,9 +49,6 @@ const EditNote = () => {
 			x: -300,
 		},
 	})
-
-	const { notes, setNotes } = useNotes()
-	const { editNote } = useNotes()
 
 	const note = notes.find((note: INote) => note.id === id)
 	const [handleChange, setHandleChange] = useState<string>(note?.text as string)
@@ -56,18 +59,24 @@ const EditNote = () => {
 		}
 	}, [])
 
-	// useEffect(() => {
-	// 	if (note?.id !== id) {
-	// 		navigate('/')
-	// 	}
-	// }, [])
+	useEffect(() => {
+		if (note?.id !== id) {
+			navigate('/')
+		}
+	}, [])
 
 	const saveNote = async () => {
 		try {
+			setLoading(true)
+			await updateDoc(doc(notesCollectionRef, id), {
+				text: handleChange,
+			})
 			notify.success()
 		} catch (e) {
 			notify.error()
 			console.error('Error:', e)
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -92,7 +101,12 @@ const EditNote = () => {
 					keyDownFunc={handleKeyDown}
 					editMode={true}
 				/>
-				<Button ariaLabel='Save note' className={styles.btn} action={saveNote}>
+				<Button
+					disabled={isLoading}
+					ariaLabel='Save note'
+					className={styles.btn}
+					action={saveNote}
+				>
 					Save
 				</Button>
 				<Toaster />

@@ -7,12 +7,14 @@ const Button = ({
 	action,
 	className,
 	ariaLabel = 'Save note',
+	disabled,
 }: IButton) => {
 	return (
 		<button
 			className={`${styles.btn} ${className}`}
 			onClick={action}
 			aria-label={ariaLabel}
+			disabled={disabled}
 		>
 			{children}
 		</button>

@@ -11,16 +11,24 @@ import styles from './NewNote.module.css'
 import Textarea from '../Textarea/Textarea'
 import ActionButtons from '../../UI/ActionButtons/ActionButtons'
 import { useAuthStore } from '../../store/auth.store'
-import { arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore'
+import {
+	addDoc,
+	arrayUnion,
+	collection,
+	doc,
+	setDoc,
+	updateDoc,
+} from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { nanoid } from 'nanoid'
 
 const NewNote = () => {
-	const { notes, addNote } = useNotes()
-	const { user, setLoading } = useAuthStore()
+	const { notes } = useNotes()
+	const { user, setLoading, isLoading } = useAuthStore()
 	const [textNote, setTextNote] = useState<string>('')
 	const areaRef = createRef<HTMLTextAreaElement>()
-	const notePath = doc(db, 'users', `${user?.email}`)
+
+	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
 
 	const [isSaveButtons, setIsSaveButton] = useState<boolean>(
 		notes?.length > 0 ? false : true
@@ -39,13 +47,12 @@ const NewNote = () => {
 	const saveNote = async () => {
 		if (textNote.trim().length > 0) {
 			setLoading(true)
-			if (user.email) {
-				await updateDoc(doc(db, 'users', `${user.email}`), {
-					watchList: arrayUnion({
-						id: nanoid(),
-						date: Date.now().toLocaleString(),
-						text: textNote,
-					}),
+			if (user.uid) {
+				const currentDate = new Date().getTime().toString()
+				await addDoc(notesCollectionRef, {
+					id: nanoid(),
+					text: textNote,
+					date: currentDate,
 				})
 			}
 			setLoading(false)
@@ -73,7 +80,7 @@ const NewNote = () => {
 				editMode={false}
 			/>
 			<div className={styles.saveBtn}>
-				<Button action={saveNote} ariaLabel='Save note'>
+				<Button disabled={isLoading} action={saveNote} ariaLabel='Save note'>
 					Save
 				</Button>
 			</div>

@@ -5,4 +5,5 @@ export interface IButton {
 	action?: () => void
 	className?: string
 	ariaLabel: 'Save note' | 'Logout'
+	disabled: boolean
 }

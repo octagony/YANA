@@ -25,7 +25,6 @@ export const useNotes = create<INotes>(set => ({
 	setNotes: notes => {
 		console.log(notes)
 		set(state => {
-			setLocalStorage('notes-data', notes)
 			state.notes = notes
 			return {
 				notes,
