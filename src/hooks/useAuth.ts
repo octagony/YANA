@@ -1,4 +1,5 @@
 import {
+	AuthError,
 	User,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
@@ -7,11 +8,33 @@ import {
 import { auth } from '../firebase/config'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../store/auth.store'
+import { FirebaseError } from 'firebase/app'
 
 const useAuth = () => {
 	const { setUser, user, error, isLoading, setLoading, setError } =
 		useAuthStore()
 	const navigator = useNavigate()
+
+	const handleError = (error: FirebaseError) => {
+		switch (error.code) {
+			case 'auth/wrong-password':
+				setError(
+					'Could not sign in with the provided email address and password.'
+				)
+				break
+			case 'auth/user-not-found':
+				setError('User not found')
+				break
+			case 'auth/weak-password':
+				setError('Password must be at least 6 characters long')
+				break
+			case 'auth/email-already-in-use':
+				setError('Email is already registered')
+				break
+			default:
+				break
+		}
+	}
 
 	const signUp = async (email: string, password: string) => {
 		setLoading(true)
@@ -24,8 +47,9 @@ const useAuth = () => {
 				navigator('/')
 			})
 		} catch (error) {
-			const result = error as Error
-			setError(result.message)
+			const result = error as FirebaseError
+			console.error(result)
+			handleError(result)
 		} finally {
 			setLoading(false)
 		}
@@ -43,8 +67,9 @@ const useAuth = () => {
 				navigator('/')
 			})
 		} catch (error) {
-			const result = error as Error
-			setError(result.message)
+			const result = error as FirebaseError
+			console.error(result)
+			handleError(result)
 		} finally {
 			setLoading(false)
 		}

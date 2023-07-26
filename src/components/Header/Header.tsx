@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import styles from './Header.module.css'
-import Button from '../../UI/Button/Button'
 import { useAuthStore } from '../../store/auth.store'
 import useAuth from '../../hooks/useAuth'
 

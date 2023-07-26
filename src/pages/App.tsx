@@ -1,23 +1,12 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useNotes } from '../store/notes.store'
 import NotesGrid from '../components/NotesGrid/NotesGrid'
 import SearchBar from '../components/SearchBar/SearchBar'
 import withLayout from '../layout/withLayout'
 import { animated, useSpring } from '@react-spring/web'
 import { useThemeToggling } from '../hooks/useThemeToggling'
-import { db } from '../firebase/config'
-import {
-	collection,
-	doc,
-	getDoc,
-	onSnapshot,
-	orderBy,
-	query,
-} from 'firebase/firestore'
-import useAuth from '../hooks/useAuth'
 import { useAuthStore } from '../store/auth.store'
 import Loader from '../components/Loader/Loader'
+import { Suspense } from 'react'
 const App = () => {
 	useThemeToggling()
 	const { isLoading } = useAuthStore()
@@ -37,12 +26,12 @@ const App = () => {
 	}
 
 	return (
-		<>
-			<SearchBar />
+		<Suspense fallback={<Loader />}>
 			<animated.div style={animation}>
+				<SearchBar />
 				<NotesGrid />
 			</animated.div>
-		</>
+		</Suspense>
 	)
 }
 

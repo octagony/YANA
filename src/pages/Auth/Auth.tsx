@@ -4,7 +4,6 @@ import { useThemeToggling } from '../../hooks/useThemeToggling'
 import { IUser } from '../../../types/IUser'
 import useAuth from '../../hooks/useAuth'
 import { useAuthStore } from '../../store/auth.store'
-import { useNavigate } from 'react-router-dom'
 
 const AuthPage = () => {
 	const [authState, setAuthState] = useState<'signup' | 'signin'>('signin')
@@ -34,14 +33,18 @@ const AuthPage = () => {
 		<div>
 			<div className='grid place-items-center mx-2 my-20'>
 				<div
-					className='w-11/12 p-12 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 
+					className='w-9/12 p-12 sm:w-8/12 md:w-6/12 lg:w-5/12 2xl:w-4/12 
 					px-6 py-10 sm:px-10 sm:py-6 
 					bg-white rounded-lg shadow-md lg:shadow-lg'
 				>
 					<h2 className='text-center font-semibold text-3xl lg:text-4xl text-gray-800'>
 						{authState === 'signup' ? 'Sign Up' : 'Login'}
 					</h2>
-					{error && <div className='text-red-500 mt-2'>{error}</div>}
+					{error && (
+						<div className='text-red-500 text-center mt-4 text-base'>
+							{error}
+						</div>
+					)}
 					<form
 						className='mt-10'
 						method='POST'
@@ -57,7 +60,7 @@ const AuthPage = () => {
 							id='email'
 							type='email'
 							name='email'
-							placeholder='e-mail address'
+							placeholder='email'
 							className='block w-full py-3 px-1 mt-2 
 									text-gray-800 appearance-none 
 									border-b-2 border-gray-100
