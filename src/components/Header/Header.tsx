@@ -15,10 +15,19 @@ const Header = () => {
 					<h1 className={styles.title}>YANA</h1>
 				</Link>
 				<span className={styles.subtitle}>Yet Another Notes App</span>
+				{user?.email && (
+					<span className='block text-center mt-2 text-sm md:text-base lg:text-lg'>
+						for {user?.email}
+					</span>
+				)}
 			</div>
-			<div className='flex items-center gap-4'>
+			<div className='flex flex-col-reverse items-center md:flex-row md:gap-4 sm:gap-4'>
 				{user?.email ? (
-					<button onClick={logout}>Logout</button>
+					<div>
+						<button className='text-sm md:text-lg' onClick={logout}>
+							Logout
+						</button>
+					</div>
 				) : (
 					<Link to='/auth'>
 						<button>Login</button>
