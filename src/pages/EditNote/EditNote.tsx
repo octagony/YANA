@@ -11,25 +11,14 @@ import withLayout from '../../layout/withLayout'
 import { useNotes } from '../../store/notes.store'
 import Button from '../../UI/Button/Button'
 import { animated, useSpring } from '@react-spring/web'
-import { INote, INotes } from '../../../types/INotes'
+import { INote } from '../../../types/INotes'
 import styles from './EditNote.module.css'
 import { useNotify } from '../../hooks/useNotify'
 import Textarea from '../../components/Textarea/Textarea'
 import { Toaster } from 'react-hot-toast'
-import {
-	arrayUnion,
-	doc,
-	updateDoc,
-	query,
-	where,
-	collection,
-	getDoc,
-	onSnapshot,
-	getFirestore,
-} from 'firebase/firestore'
+import { doc, updateDoc, collection } from 'firebase/firestore'
 import { AuthContext } from '../../context/auth.context'
 import { db } from '../../firebase/config'
-import useAuth from '../../hooks/useAuth'
 import { useAuthStore } from '../../store/auth.store'
 
 const EditNote = () => {

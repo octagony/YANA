@@ -9,12 +9,13 @@ import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { AuthContext } from '../../context/auth.context'
 import { INote } from '../../../types/INotes'
+import Loader from '../Loader/Loader'
 
 const NotesGrid = () => {
 	const { notes } = useNotes()
 	const { inputValue } = useSearch()
 	const { user } = useContext(AuthContext)
-	const { setLoading } = useAuthStore()
+	const { setLoading, isLoading } = useAuthStore()
 	const { setNotes } = useNotes()
 
 	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
@@ -38,7 +39,7 @@ const NotesGrid = () => {
 			setNotes(notes)
 		})
 		setLoading(false)
-	}, [user.uid])
+	}, [user.email])
 
 	return (
 		<main className={styles.wrapper}>
@@ -47,7 +48,7 @@ const NotesGrid = () => {
 				? notes
 						.filter(note => note.text.toLowerCase().includes(inputValue))
 						.map(note => <Note key={note.id} {...note} />)
-				: 'None'}
+				: null}
 		</main>
 	)
 }
