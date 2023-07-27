@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { useAuthStore } from '../store/auth.store'
 import { auth, db } from '../firebase/config'
-import { useNavigate } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 import { TUser } from '../../types/IUser'
 import {
 	CollectionReference,
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 	)
 
 	useEffect(() => {
-		onAuthStateChanged(auth, user => {
+		const unsubscribe = onAuthStateChanged(auth, user => {
 			if (user) {
 				setUser(user)
 				navigator('/')
@@ -55,6 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			setInitialLoader(false)
 			setLoading(false)
 		})
+		return () => unsubscribe()
 	}, [])
 	return (
 		<AuthContext.Provider value={value}>
