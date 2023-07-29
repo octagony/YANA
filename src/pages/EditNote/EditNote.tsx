@@ -20,15 +20,16 @@ import { doc, updateDoc, collection } from 'firebase/firestore'
 import { AuthContext } from '../../context/auth.context'
 import { db } from '../../firebase/config'
 import { useAuthStore } from '../../store/auth.store'
+import { useLocation, useRoute } from 'wouter'
 
 const EditNote = () => {
 	const { user, isLoading } = useContext(AuthContext)
 	const { notes } = useNotes()
-	const { id } = useParams()
+	const [match, params] = useRoute('/edit-note/:id')
 	const { setLoading } = useAuthStore()
-	const navigate = useNavigate()
 	const areaRef = useRef<HTMLTextAreaElement>(null)
 	const { notify } = useNotify()
+	const [location, setLocation] = useLocation()
 
 	const notesCollectionRef = collection(db, 'users', `${user.uid}`, 'notes')
 
@@ -39,7 +40,7 @@ const EditNote = () => {
 		},
 	})
 
-	const note = notes.find((note: INote) => note.id === id)
+	const note = notes.find((note: INote) => note.id === params?.id)
 	const [handleChange, setHandleChange] = useState<string>(note?.text as string)
 
 	useEffect(() => {
@@ -49,15 +50,15 @@ const EditNote = () => {
 	}, [])
 
 	useEffect(() => {
-		if (note?.id !== id) {
-			navigate('/')
+		if (note?.id !== params?.id) {
+			setLocation('/')
 		}
 	}, [])
 
 	const saveNote = async () => {
 		try {
 			setLoading(true)
-			await updateDoc(doc(notesCollectionRef, id), {
+			await updateDoc(doc(notesCollectionRef, params?.id), {
 				text: handleChange,
 			})
 			notify.success()

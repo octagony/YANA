@@ -1,4 +1,4 @@
-import { User, onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 import React, {
 	createContext,
 	ReactNode,
@@ -7,17 +7,9 @@ import React, {
 	useState,
 } from 'react'
 import { useAuthStore } from '../store/auth.store'
-import { auth, db } from '../firebase/config'
-import { redirect, useNavigate } from 'react-router-dom'
+import { auth } from '../firebase/config'
+import { useLocation } from 'wouter'
 import { TUser } from '../../types/IUser'
-import {
-	CollectionReference,
-	DocumentData,
-	Query,
-	collection,
-	orderBy,
-	query,
-} from 'firebase/firestore'
 
 export interface AuthContextState {
 	user: TUser
@@ -30,9 +22,9 @@ export const AuthContext = createContext<AuthContextState>({
 })
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-	const [initialLoader, setInitialLoader] = useState<boolean>(false)
 	const { isLoading, user, setUser, setLoading } = useAuthStore()
-	const navigator = useNavigate()
+
+	const [location, setLocation] = useLocation()
 
 	const value = useMemo(
 		() => ({
@@ -47,18 +39,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			if (user) {
 				setUser(user)
 			} else {
-				setLoading(false)
 				setUser({} as TUser)
-				navigator('/auth')
+				setLocation('/auth')
 			}
-			setInitialLoader(false)
 			setLoading(false)
 		})
 		return () => unsubscribe()
 	}, [])
-	return (
-		<AuthContext.Provider value={value}>
-			{initialLoader ? 'Loader...' : children}
-		</AuthContext.Provider>
-	)
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

@@ -1,19 +1,18 @@
 import {
-	AuthError,
 	User,
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'wouter'
 import { useAuthStore } from '../store/auth.store'
 import { FirebaseError } from 'firebase/app'
 
 const useAuth = () => {
 	const { setUser, user, error, isLoading, setLoading, setError } =
 		useAuthStore()
-	const navigator = useNavigate()
+	const [location, setLocation] = useLocation()
 
 	const handleError = (error: FirebaseError) => {
 		switch (error.code) {
@@ -44,7 +43,7 @@ const useAuth = () => {
 					email: data.user.email,
 					uid: data.user.uid,
 				})
-				navigator('/')
+				setLocation('/')
 			})
 		} catch (error) {
 			const result = error as FirebaseError
@@ -64,7 +63,7 @@ const useAuth = () => {
 					uid: data.user.uid,
 				})
 				setLoading(false)
-				navigator('/')
+				setLocation('/')
 			})
 		} catch (error) {
 			const result = error as FirebaseError

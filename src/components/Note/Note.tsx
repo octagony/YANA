@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { AiFillEdit } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link } from 'wouter'
 import { INote } from '../../../types/INotes'
 import styles from './Note.module.css'
 import { collection, deleteDoc, doc } from 'firebase/firestore'
@@ -30,7 +30,7 @@ const Note = ({ id, text, date }: INote) => {
 			<div className={styles.info}>
 				<p>{dayjs(date).format('MM/DD/YYYY')}</p>
 				<div className={styles.iconsWrapper}>
-					<Link className={styles.icon} to={`/edit-note/${id}`}>
+					<Link className={styles.icon} href={`/edit-note/${id}`}>
 						<AiFillEdit size={25} />
 					</Link>
 					<FaTrash

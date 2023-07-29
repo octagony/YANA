@@ -39,7 +39,7 @@ const NotesGrid = () => {
 			setNotes(notes)
 		})
 		setLoading(false)
-	}, [user.email])
+	}, [user])
 
 	return (
 		<main className={styles.wrapper}>

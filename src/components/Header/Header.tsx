@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'wouter'
 import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import styles from './Header.module.css'
 import { useAuthStore } from '../../store/auth.store'
@@ -29,7 +29,7 @@ const Header = () => {
 						</button>
 					</div>
 				) : (
-					<Link to='/auth'>
+					<Link href='/auth'>
 						<button>Login</button>
 					</Link>
 				)}
