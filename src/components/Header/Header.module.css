@@ -22,7 +22,7 @@
   @apply flex items-center gap-2 sm:gap-4 lg:gap-6;
 }
 .auth__btns {
-  @apply cursor-pointer;
+  @apply cursor-pointer transition-transform hover:scale-[1.2];
 }
 
 :global(.dark) .header {
