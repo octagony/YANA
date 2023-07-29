@@ -15,5 +15,5 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": { "react/display-name": "off"}
+  "rules": { "react/display-name": "off", "react/react-in-jsx-scope": "off" }
 }

@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useThemeToggling } from "../../hooks/useThemeToggling";
 import withLayout from "../../layout/withLayout";
 import styles from "./Page404.module.css";
 
 const Page404 = () => {
-  const theme = useThemeToggling();
+  useThemeToggling();
 
   return (
     <div className={styles.wrapper}>

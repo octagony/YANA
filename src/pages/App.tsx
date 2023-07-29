@@ -1,25 +1,34 @@
-import React from 'react'
-import NotesGrid from '../components/NotesGrid/NotesGrid'
-import SearchBar from '../components/SearchBar/SearchBar'
-import withLayout from '../layout/withLayout'
-import { animated, useSpring } from '@react-spring/web'
-import { useThemeToggling } from '../hooks/useThemeToggling'
+import NotesGrid from "../components/NotesGrid/NotesGrid";
+import SearchBar from "../components/SearchBar/SearchBar";
+import withLayout from "../layout/withLayout";
+import { animated, useSpring } from "@react-spring/web";
+import { useThemeToggling } from "../hooks/useThemeToggling";
+import { useAuthContext } from "../hooks/useAuthContext";
+import Loader from "../components/Loader/Loader";
 const App = () => {
-	useThemeToggling()
+  const { user } = useAuthContext();
 
-	const animation = useSpring({
-		x: 0,
-		from: {
-			x: -300,
-		},
-	})
+  useThemeToggling();
 
-	return (
-		<animated.div style={animation}>
-			<SearchBar />
-			<NotesGrid />
-		</animated.div>
-	)
-}
+  const animation = useSpring({
+    x: 0,
+    from: {
+      x: -300,
+    },
+  });
 
-export default withLayout(App)
+  return (
+    <>
+      {!user.email ? (
+        <Loader />
+      ) : (
+        <animated.div style={animation}>
+          <SearchBar />
+          <NotesGrid />
+        </animated.div>
+      )}
+    </>
+  );
+};
+
+export default withLayout(App);
