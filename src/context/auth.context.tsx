@@ -1,11 +1,5 @@
 import { onAuthStateChanged } from 'firebase/auth'
-import React, {
-	createContext,
-	ReactNode,
-	useMemo,
-	useEffect,
-	useState,
-} from 'react'
+import React, { createContext, ReactNode, useMemo, useEffect } from 'react'
 import { useAuthStore } from '../store/auth.store'
 import { auth } from '../firebase/config'
 import { useLocation } from 'wouter'

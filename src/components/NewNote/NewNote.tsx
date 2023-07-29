@@ -13,11 +13,7 @@ import ActionButtons from '../../UI/ActionButtons/ActionButtons'
 import { useAuthStore } from '../../store/auth.store'
 import {
 	addDoc,
-	arrayUnion,
 	collection,
-	doc,
-	setDoc,
-	updateDoc,
 } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { nanoid } from 'nanoid'
