@@ -3,7 +3,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import styles from "./Header.module.css";
 import { useAuthStore } from "../../store/auth.store";
 import useAuth from "../../hooks/useAuth";
-import { HiOutlineLogout } from "react-icons/hi";
+import { HiOutlineLogout, HiOutlineLogin } from "react-icons/hi";
 
 const Header = () => {
   const { user } = useAuthStore();
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.header__info}>
-        <Link to="/">
+        <Link to={user?.email ? "/" : "/auth"}>
           <h1 className={styles.title}>YANA</h1>
         </Link>
         <span className={styles.subtitle}>Yet Another Notes App</span>
@@ -22,13 +22,13 @@ const Header = () => {
       <div className={styles.icons__wrapper}>
         {user?.email ? (
           <HiOutlineLogout
-            className={styles.logout__btn}
+            className={styles.auth__btns}
             size={25}
             onClick={logout}
           />
         ) : (
           <Link href="/auth">
-            <button>Login</button>
+            <HiOutlineLogin className={styles.auth__btns} size={25} />
           </Link>
         )}
         <ThemeToggle />

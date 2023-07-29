@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply text-2xl sm:text-5xl font-bold text-center;
+  @apply text-2xl sm:text-5xl font-bold text-center cursor-pointer;
 }
 
 .subtitle {
@@ -21,7 +21,7 @@
 .icons__wrapper {
   @apply flex items-center gap-2 sm:gap-4 lg:gap-6;
 }
-.logout__btn {
+.auth__btns {
   @apply cursor-pointer;
 }
 

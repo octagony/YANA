@@ -1,17 +1,10 @@
-import React from 'react'
+import styles from "./Loader.module.css";
 const Loader = () => {
-	return (
-		<div className='absolute top-0 left-0 bg-slate-400/50 h-full w-full'>
-			<div
-				className='relative top-1/2 left-1/2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
-				role='status'
-			>
-				<span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
-					Loading...
-				</span>
-			</div>
-		</div>
-	)
-}
+  return (
+    <div className={styles.loader__wrapper}>
+      <div className={styles.loader} role="status"></div>
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;
