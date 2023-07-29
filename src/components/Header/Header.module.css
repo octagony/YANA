@@ -1,19 +1,34 @@
-.header{
-    @apply p-4 flex justify-between items-center my-3
+.header {
+  @apply p-4 flex justify-between items-center my-3;
 }
 
-.title{
-    @apply text-2xl sm:text-5xl font-bold text-center
+.header__info {
+  @apply text-center;
 }
 
-.subtitle{
-   @apply hidden md:block text-xl
+.title {
+  @apply text-2xl sm:text-5xl font-bold text-center;
 }
 
-:global(.dark) .header{
-    @apply text-white
+.subtitle {
+  @apply hidden md:block text-xl;
 }
 
-:global(.dark) .subtitle{
-    @apply text-white
+.user__info {
+  @apply block mt-1 text-sm sm:text-lg;
+}
+
+.icons__wrapper {
+  @apply flex items-center gap-2 sm:gap-4 lg:gap-6;
+}
+.logout__btn {
+  @apply cursor-pointer;
+}
+
+:global(.dark) .header {
+  @apply text-white;
+}
+
+:global(.dark) .subtitle {
+  @apply text-white;
 }
