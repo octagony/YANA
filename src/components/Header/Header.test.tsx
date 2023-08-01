@@ -1,9 +1,8 @@
-import React from "react";
-import { render, screen, userEvent } from "../../../utils/testUtils";
-import Header from "./Header";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react'
+import { render, screen, userEvent } from '../../../utils/testUtils'
+import Header from './Header'
 
-test("header rendering", async () => {
-  render(<Header />, { wrapper: BrowserRouter });
-  expect(screen.getByText(/yana/i)).toBeInTheDocument();
-});
+test('header rendering', async () => {
+	render(<Header />)
+	expect(screen.getByText(/yana/i)).toBeInTheDocument()
+})
