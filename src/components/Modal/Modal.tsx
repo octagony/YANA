@@ -1,13 +1,17 @@
-import ReactDOM from 'react-dom'
-import { IModalProps } from './Modal.props'
-import { useThemeToggling } from '../../hooks/useThemeToggling'
-import styles from './Modal.module.css'
+// Libraries
+import { createPortal } from 'react-dom'
 import cn from 'classnames'
+// Props
+import { IModalProps } from './Modal.props'
+// Hooks
+import { useThemeToggling } from '../../hooks/useThemeToggling'
+// Styles
+import styles from './Modal.module.css'
 
 const Modal = ({ setModalMode, deleteNote, noteId }: IModalProps) => {
 	useThemeToggling()
 
-	return ReactDOM.createPortal(
+	return createPortal(
 		<div className={styles.layout}>
 			<div className={styles.wrapper}>
 				<div className={styles.modal__box}>

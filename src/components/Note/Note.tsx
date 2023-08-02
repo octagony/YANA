@@ -1,14 +1,25 @@
+// Libraries
+import { Link } from 'wouter'
+import dayjs from 'dayjs'
+import { collection, deleteDoc, doc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
+import { useState } from 'react'
+
+// Components
+import Modal from '../Modal/Modal'
+
+// Types
+import { INote } from '../../../types/INotes'
+
+// Store
+import { useAuthStore } from '../../store/auth.store'
+
+// Icons
 import { FaTrash } from 'react-icons/fa'
 import { AiFillEdit } from 'react-icons/ai'
-import { Link } from 'wouter'
-import { INote } from '../../../types/INotes'
+
+// Styles
 import styles from './Note.module.css'
-import { collection, deleteDoc, doc } from 'firebase/firestore'
-import dayjs from 'dayjs'
-import { db } from '../../firebase/config'
-import { useAuthStore } from '../../store/auth.store'
-import Modal from '../Modal/Modal'
-import { useState } from 'react'
 
 const Note = ({ id, text, date }: INote) => {
 	const { user, setError, setLoading } = useAuthStore()
@@ -26,6 +37,7 @@ const Note = ({ id, text, date }: INote) => {
 			setLoading(false)
 		}
 	}
+
 	return (
 		<>
 			{modalMode && (

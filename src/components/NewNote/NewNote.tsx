@@ -1,4 +1,4 @@
-import React, {
+import {
 	useState,
 	useEffect,
 	ChangeEvent,
@@ -11,10 +11,7 @@ import styles from './NewNote.module.css'
 import Textarea from '../Textarea/Textarea'
 import ActionButtons from '../../UI/ActionButtons/ActionButtons'
 import { useAuthStore } from '../../store/auth.store'
-import {
-	addDoc,
-	collection,
-} from 'firebase/firestore'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { nanoid } from 'nanoid'
 

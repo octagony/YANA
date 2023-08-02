@@ -1,7 +1,7 @@
 .loader__wrapper {
-  @apply absolute top-0 left-0 bg-slate-400/50 h-full w-full;
+	@apply absolute top-0 left-0  h-full w-full;
 }
 
 .loader {
-  @apply relative top-1/2 left-1/2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite];
+	@apply relative top-1/2 left-1/2 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite];
 }
