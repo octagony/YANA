@@ -36,7 +36,7 @@ const Note = ({ id, text, date }: INote) => {
 				/>
 			)}
 			<div className={styles.wrapper}>
-				<span>{text.length > 50 ? `${text.slice(0, 50)}...` : text}</span>
+				<span>{text.length > 100 ? `${text.slice(0, 100)}...` : text}</span>
 				<div className={styles.info}>
 					<p>{dayjs(date).format('MM/DD/YYYY')}</p>
 					<div className={styles.iconsWrapper}>

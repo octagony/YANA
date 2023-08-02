@@ -1,30 +1,29 @@
 import ReactDOM from 'react-dom'
 import { IModalProps } from './Modal.props'
 import { useThemeToggling } from '../../hooks/useThemeToggling'
+import styles from './Modal.module.css'
+import cn from 'classnames'
 
 const Modal = ({ setModalMode, deleteNote, noteId }: IModalProps) => {
 	useThemeToggling()
 
 	return ReactDOM.createPortal(
-		<div className='fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full'>
-			<div className='relative top-1/3 mx-auto p-5 border w-11/12 sm:w-1/2 lg:w-1/3 shadow-lg rounded-md bg-white dark:bg-neutral-700'>
-				<div className='mt-3 text-center'>
-					<p className='text-lg text-gray-500 dark:text-white'>
+		<div className={styles.layout}>
+			<div className={styles.wrapper}>
+				<div className={styles.modal__box}>
+					<p className={styles.modal__title}>
 						Are you sure about delete this note?
 					</p>
-					<div className='flex gap-2 justify-center items-center px-4 py-3'>
+					<div className={styles.buttons__wrapper}>
 						<button
 							onClick={() => setModalMode(prev => !prev)}
-							id='ok-btn'
-							className='px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full md:w-1/2 shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-green-300'
+							className={cn(styles.button, styles.button__cancel)}
 						>
 							Cancel
 						</button>
 						<button
 							onClick={() => deleteNote(noteId)}
-							id='ok-btn'
-							className='px-4 py-2 bg-green-500 text-white 
-							md:w-1/2 text-base font-medium rounded-md w-full shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300'
+							className={cn(styles.button, styles.button__apply)}
 						>
 							Yes
 						</button>

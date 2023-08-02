@@ -3,6 +3,9 @@
 # node-version for fnm
 .node-version
 
+# vscode
+.vscode
+
 # dependencies
 /node_modules
 /.pnp
