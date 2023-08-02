@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-wrap: break-word;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif,
+		'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	overflow-wrap: break-word;
 }
 
 body {
-  @apply bg-gray-300 dark:bg-neutral-700 container font-mono text-lg mx-auto px-4 leading-5 transition-colors duration-500;
+	@apply relative bg-gray-300 dark:bg-neutral-700 container font-mono text-lg mx-auto px-4 leading-5 transition-colors duration-500;
 }

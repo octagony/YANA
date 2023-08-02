@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import NewNote from '../NewNote/NewNote'
 import Note from '../Note/Note'
 import { useNotes } from '../../store/notes.store'
 import { useSearch } from '../../store/search.store'
 import styles from './NotesGrid.module.css'
 import { useAuthStore } from '../../store/auth.store'
-import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { AuthContext } from '../../context/auth.context'
 import { INote } from '../../../types/INotes'
 
-const NotesGrid = () => {
+const NotesGrid: FC = () => {
 	const { notes } = useNotes()
 	const { inputValue } = useSearch()
 	const { user } = useContext(AuthContext)

@@ -4,5 +4,8 @@ import Header from './Header'
 
 test('header rendering', async () => {
 	render(<Header />)
+
 	expect(screen.getByText(/yana/i)).toBeInTheDocument()
+
+	screen.debug()
 })
