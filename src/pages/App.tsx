@@ -21,14 +21,16 @@ const App = () => {
 
 	return (
 		<>
-			<NotesSlider />
 			{!user.email ? (
 				<Loader />
 			) : (
-				<animated.div style={animation}>
-					<SearchBar />
-					<NotesGrid />
-				</animated.div>
+				<>
+					<NotesSlider />
+					<animated.div style={animation}>
+						<SearchBar />
+						<NotesGrid />
+					</animated.div>
+				</>
 			)}
 		</>
 	)
