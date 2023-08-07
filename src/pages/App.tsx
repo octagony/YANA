@@ -11,6 +11,8 @@ import { animated, useSpring } from '@react-spring/web'
 // Hooks
 import { useThemeToggling } from '../hooks/useThemeToggling'
 import { useAuthContext } from '../hooks/useAuthContext'
+import Loader from '../components/Loader/Loader'
+import NotesSlider from '../components/NoteSlider/NotesSlider'
 
 const App = () => {
 	const { user } = useAuthContext()
@@ -29,10 +31,13 @@ const App = () => {
 			{!user.email ? (
 				<Loader />
 			) : (
-				<animated.div style={animation}>
-					<SearchBar />
-					<NotesGrid />
-				</animated.div>
+				<>
+					<NotesSlider />
+					<animated.div style={animation}>
+						<SearchBar />
+						<NotesGrid />
+					</animated.div>
+				</>
 			)}
 		</>
 	)
