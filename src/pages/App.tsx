@@ -1,10 +1,17 @@
+// Components
 import NotesGrid from '../components/NotesGrid/NotesGrid'
 import SearchBar from '../components/SearchBar/SearchBar'
+import Loader from '../components/Loader/Loader'
+import NotesSlider from '../components/NoteSlider/NotesSlider'
 import withLayout from '../layout/withLayout'
+
+// Libraries
 import { animated, useSpring } from '@react-spring/web'
+
+// Hooks
 import { useThemeToggling } from '../hooks/useThemeToggling'
 import { useAuthContext } from '../hooks/useAuthContext'
-import Loader from '../components/Loader/Loader'
+
 const App = () => {
 	const { user } = useAuthContext()
 
