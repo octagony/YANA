@@ -23,7 +23,7 @@
 	"homepage": "https://octagony.github.io",
 	"scripts": {
 		"predeploy": "npm run build",
-		"start": "vite",
+		"dev": "vite",
 		"test": "vitest",
 		"build": "eslint src && tsc && vite build"
 	},

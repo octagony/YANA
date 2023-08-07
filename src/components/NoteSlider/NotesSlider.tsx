@@ -1,10 +1,16 @@
-import Slider from 'react-slick'
+// Libraries
+import { useLocation } from 'wouter'
+
+//Store
 import { useNotes } from '../../store/notes.store'
-import { BsArrowBarLeft, BsArrowBarRight } from 'react-icons/bs'
+
+// Components
+import Slider from 'react-slick'
 
 const NotesSlider = () => {
 	const { notes } = useNotes()
-	const notesTitles = notes.map(note => note.text)
+
+	const [location, setLocation] = useLocation()
 
 	const settings = {
 		dots: false,
@@ -44,12 +50,15 @@ const NotesSlider = () => {
 	return (
 		<div className='px-4 py-2 mb-8'>
 			<Slider {...settings}>
-				{notesTitles.map(title => (
+				{notes.map(note => (
 					<div
-						className='p-2 text-center border border-red-50 rounded-full hover:bg-gray-300 dark:text-white dark:hover:text-neutral-700 transition-colors'
-						key={title}
+						className='px-4 py-2 text-center border bg-lime-200 hover:bg-lime-300 rounded-full  dark:text-white dark:bg-neutral-600 dark:hover:bg-neutral-800 transition-colors cursor-pointer'
+						key={note.id}
+						onClick={() => {
+							setLocation(`/edit-note/${note.id}`)
+						}}
 					>
-						{title.slice(0, 5)}
+						{note.text.slice(0, 5)}
 					</div>
 				))}
 			</Slider>
