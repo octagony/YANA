@@ -1,15 +1,31 @@
 .title {
-	@apply mb-4 text-4xl font-bold text-center;
+  @apply mb-4 text-4xl font-bold text-center;
 }
 
 .wrapper {
-	@apply relative bg-lime-200 rounded-xl p-2;
+  @apply relative bg-lime-200 rounded-xl p-2;
 }
 
 .btn {
-	@apply bg-emerald-500 text-gray-100 block mx-auto mb-2 w-2/6 md:w-2/12 hover:bg-emerald-600 hover:text-gray-100;
+  @apply bg-emerald-500 text-gray-100 block mx-auto mb-2 w-2/6 md:w-2/12 hover:bg-emerald-600 hover:text-gray-100;
+}
+
+.markdown {
+  @apply p-4 min-h-[30vh];
+}
+
+.markdown a {
+  @apply text-blue-500 underline;
+}
+
+.markdown h1 {
+  @apply text-3xl;
+}
+
+.markdown h2 {
+  @apply text-2xl;
 }
 
 :global(.dark) .title {
-	@apply text-white;
+  @apply text-white;
 }

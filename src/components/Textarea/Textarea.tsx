@@ -4,7 +4,8 @@ import { ITextarea } from "./Textarea.props";
 import cn from "classnames";
 
 const Textarea = forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
-  const { value, changeFunc, keyDownFunc, editMode } = props;
+  const { value, changeFunc, keyDownFunc, editMode, markdownMode } = props;
+
   return (
     <textarea
       className={cn(
@@ -15,11 +16,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
       cols={10}
       rows={8}
       placeholder="Just start type..."
-      value={value}
       ref={ref}
       onChange={changeFunc}
       onKeyDown={keyDownFunc}
-    ></textarea>
+      value={value}
+    />
   );
 });
 

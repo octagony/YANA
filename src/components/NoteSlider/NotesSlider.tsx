@@ -18,7 +18,6 @@ const NotesSlider = () => {
 		infinite: false,
 		slidesToShow: 6,
 		slidesToScroll: 2,
-
 		responsive: [
 			{
 				breakpoint: 1024,
