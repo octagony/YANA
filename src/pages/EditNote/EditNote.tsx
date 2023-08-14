@@ -13,6 +13,7 @@ import { db } from "../../firebase/config";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 // Components
 import Button from "../../UI/Button/Button";
@@ -117,11 +118,7 @@ const EditNote = () => {
             markdownMode={markdownMode}
           />
         ) : (
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
-            className={styles.markdown}
-          >
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {handleChange}
           </ReactMarkdown>
         )}

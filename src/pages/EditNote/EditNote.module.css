@@ -14,16 +14,27 @@
   @apply p-4 min-h-[30vh];
 }
 
-.markdown a {
+.wrapper a {
   @apply text-blue-500 underline;
 }
 
-.markdown h1 {
+.wrapper h1 {
   @apply text-3xl;
 }
 
-.markdown h2 {
+.wrapper h2 {
   @apply text-2xl;
+}
+
+.wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wrapper th,
+td {
+  border: 1px solid #ccc;
+  padding: 5px;
 }
 
 :global(.dark) .title {
