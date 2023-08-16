@@ -118,7 +118,19 @@ const EditNote = () => {
             markdownMode={markdownMode}
           />
         ) : (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const matchLanguange = /language-(\w+)/.exec(className || "");
+                return !inline && matchLanguange ? (
+                  <SyntaxHighlighter language={matchLanguange[1]}>
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : null;
+              },
+            }}
+          >
             {handleChange}
           </ReactMarkdown>
         )}

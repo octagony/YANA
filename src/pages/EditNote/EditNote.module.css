@@ -26,9 +26,54 @@
   @apply text-2xl;
 }
 
+.wrapper h3 {
+  @apply text-xl;
+}
+
+.wrapper h4 {
+  @apply text-lg;
+}
+
+.wrapper h5 {
+  @apply text-base;
+}
+
+.wrapper h6 {
+  @apply text-sm;
+}
+
+.wrapper blockquote {
+  @apply italic border-l-4 border-l-gray-600 pl-4;
+}
+
+.wrapper ol {
+  @apply list-decimal pl-8;
+}
+
+.wrapper ul {
+  @apply list-disc pl-4;
+}
+
+.wrapper img {
+  @apply max-w-full h-auto;
+}
+
 .wrapper table {
-  width: 100%;
-  border-collapse: collapse;
+  @apply border-collapse border-spacing-0 block w-full;
+}
+
+.wrapper ul[class="contains-task-list"] {
+  @apply list-none;
+}
+
+.wrapper pre {
+  @apply p-2;
+}
+
+/* TODO:rewrite code blocks */
+
+.wrapper pre > pre {
+  @apply p-8 !important;
 }
 
 .wrapper th,
