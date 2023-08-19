@@ -12,8 +12,8 @@ import { doc, updateDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { TbMarkdown, TbMarkdownOff } from "react-icons/tb";
 
 // Components
 import Button from "../../UI/Button/Button";
@@ -104,9 +104,6 @@ const EditNote = () => {
   return (
     <animated.div style={animation}>
       <h2 className={styles.title}>Edit Note</h2>
-      <button onClick={() => setMarkdownMode((prev) => !prev)}>
-        Switch to markdown
-      </button>
       <div className={styles.wrapper}>
         {markdownMode ? (
           <Textarea
@@ -127,14 +124,16 @@ const EditNote = () => {
                   <SyntaxHighlighter language={matchLanguange[1]}>
                     {String(children).replace(/\n$/, "")}
                   </SyntaxHighlighter>
-                ) : null;
+                ) : (
+                  <code>{children}</code>
+                );
               },
             }}
           >
             {handleChange}
           </ReactMarkdown>
         )}
-        <div>
+        <div className={styles.buttons__wrapper}>
           <Button
             disabled={isLoading}
             ariaLabel="Save note"
@@ -143,6 +142,16 @@ const EditNote = () => {
           >
             Save
           </Button>
+          <button
+            className={styles.markdown__button}
+            onClick={() => setMarkdownMode((prev) => !prev)}
+          >
+            {markdownMode ? (
+              <TbMarkdown size={30} />
+            ) : (
+              <TbMarkdownOff size={30} />
+            )}
+          </button>
         </div>
         <Toaster />
       </div>
