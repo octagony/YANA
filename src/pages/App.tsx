@@ -12,8 +12,12 @@ import { animated, useSpring } from '@react-spring/web'
 import { useThemeToggling } from '../hooks/useThemeToggling'
 import { useAuthContext } from '../hooks/useAuthContext'
 
+// Store
+import { useAuthStore } from '../store/auth.store'
+
 const App = () => {
 	const { user } = useAuthContext()
+	const { isLoading } = useAuthStore();
 
 	useThemeToggling()
 
@@ -26,7 +30,7 @@ const App = () => {
 
 	return (
 		<>
-			{!user.email ? (
+			{!user.email || isLoading ? (
 				<Loader />
 			) : (
 				<>
