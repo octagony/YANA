@@ -3,7 +3,7 @@
 }
 
 .wrapper {
-  @apply relative bg-lime-200 rounded-xl p-2;
+  @apply relative bg-lime-200 rounded-xl p-4;
 }
 
 .buttons__wrapper {
@@ -23,43 +23,43 @@
 }
 
 .wrapper a {
-  @apply text-blue-500 underline;
+  @apply text-blue-500 underline py-3;
 }
 
 .wrapper h1 {
-  @apply text-3xl;
+  @apply text-3xl py-3;
 }
 
 .wrapper h2 {
-  @apply text-2xl;
+  @apply text-2xl py-2;
 }
 
 .wrapper h3 {
-  @apply text-xl;
+  @apply text-xl py-2;
 }
 
 .wrapper h4 {
-  @apply text-lg;
+  @apply text-lg py-2;
 }
 
 .wrapper h5 {
-  @apply text-base;
+  @apply text-base py-2;
 }
 
 .wrapper h6 {
-  @apply text-sm;
+  @apply text-sm py-2;
 }
 
 .wrapper blockquote {
-  @apply italic border-l-4 border-l-gray-600 pl-4;
+  @apply italic border-l-4 border-l-gray-600 pl-4 py-2;
 }
 
 .wrapper ol {
-  @apply list-decimal pl-8;
+  @apply list-decimal pl-8 py-2;
 }
 
 .wrapper ul {
-  @apply list-disc pl-4;
+  @apply list-disc pl-4 py-2;
 }
 
 .wrapper img {
@@ -76,11 +76,6 @@
 
 .wrapper pre {
   @apply p-2;
-}
-
-/* TODO:rewrite code blocks */
-
-.wrapper pre > pre {
 }
 
 .wrapper th,
