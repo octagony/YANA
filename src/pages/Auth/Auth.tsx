@@ -100,8 +100,7 @@ const AuthPage = () => {
             />
 
             <button
-              type="submit"
-              className={styles.button}
+              className={styles.form__button}
               disabled={isLoading}
             >
               {isLoading

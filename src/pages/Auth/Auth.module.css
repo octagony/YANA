@@ -43,10 +43,8 @@
     focus:text-gray-500 focus:outline-none focus:border-gray-200
 }
 
-.button{
-    @apply w-full py-3 mt-10 bg-gray-800 rounded-sm
-    font-medium text-white uppercase
-    focus:outline-none hover:bg-gray-700 hover:shadow-none
+.form__button{
+    @apply w-full py-3 mt-10 rounded-sm bg-gray-600 font-medium text-white uppercase focus:outline-none hover:bg-gray-700 hover:shadow-none transition-colors
 }
 
 .info__wrapper{
