@@ -4,7 +4,7 @@ import { ITextarea } from "./Textarea.props";
 import cn from "classnames";
 
 const Textarea = forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
-  const { value, changeFunc, keyDownFunc, editMode, markdownMode } = props;
+  const { value, changeFunc, keyDownFunc, editMode } = props;
 
   return (
     <textarea
