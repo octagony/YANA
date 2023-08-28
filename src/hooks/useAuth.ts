@@ -47,6 +47,7 @@ const useAuth = () => {
 					uid: data.user.uid,
 				})
 				setLocation('/')
+				setError('')
 			})
 		} catch (error) {
 			const result = error as FirebaseError
@@ -65,8 +66,8 @@ const useAuth = () => {
 					email: data.user.email,
 					uid: data.user.uid,
 				})
-				setLoading(false)
 				setLocation('/')
+				setError('')
 			})
 		} catch (error) {
 			const result = error as FirebaseError

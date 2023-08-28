@@ -102,6 +102,7 @@ const AuthPage = () => {
             <button
               className={styles.form__button}
               disabled={isLoading}
+              aria-label={authState === "signup" ? "Sign Up" : "Sign In"}
             >
               {isLoading
                 ? "Loading..."
