@@ -1,6 +1,13 @@
+// Libraries
 import { Link } from 'wouter'
-import { useThemeToggling } from '../../hooks/useThemeToggling'
+
+// Components
 import withLayout from '../../layout/withLayout'
+
+// Hooks
+import { useThemeToggling } from '../../hooks/useThemeToggling'
+
+// Styles
 import styles from './Page404.module.css'
 
 const Page404 = () => {

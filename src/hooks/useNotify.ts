@@ -1,4 +1,7 @@
+// Libraries
 import { toast } from 'react-hot-toast'
+
+// Hooks
 import { useThemeToggling } from './useThemeToggling'
 
 export const useNotify = () => {

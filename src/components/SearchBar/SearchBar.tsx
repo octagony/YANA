@@ -1,5 +1,7 @@
-import React from 'react'
+// Store
 import { useSearch } from '../../store/search.store'
+
+// Styles
 import styles from './SearchBar.module.css'
 
 const SearchBar = () => {

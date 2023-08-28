@@ -1,4 +1,7 @@
+// Libraries
 import { AiFillGithub } from "react-icons/ai";
+
+// Styles
 import styles from "./Footer.module.css";
 
 const Footer = () => {

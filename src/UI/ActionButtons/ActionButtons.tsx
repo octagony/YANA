@@ -1,4 +1,4 @@
-import React from 'react'
+// Styles
 import styles from './ActionButtons.module.css'
 
 const ActionButtons = () => {

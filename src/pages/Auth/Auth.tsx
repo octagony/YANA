@@ -8,11 +8,11 @@ import withLayout from "../../layout/withLayout";
 import { useThemeToggling } from "../../hooks/useThemeToggling";
 import useAuth from "../../hooks/useAuth";
 
-// Types
-import { IUser } from "../../../types/IUser";
-
 // Store
 import { useAuthStore } from "../../store/auth.store";
+
+// Types
+import { IUser } from "../../../types/IUser";
 
 // Styles
 import styles from './Auth.module.css'

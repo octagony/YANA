@@ -1,7 +1,13 @@
-import { forwardRef } from "react";
-import styles from "./Textarea.module.css";
-import { ITextarea } from "./Textarea.props";
+// Libraries
 import cn from "classnames";
+import { forwardRef } from "react";
+
+// Styles
+import styles from "./Textarea.module.css";
+
+// Types
+import { ITextarea } from "./Textarea.props";
+
 
 const Textarea = forwardRef<HTMLTextAreaElement, ITextarea>((props, ref) => {
   const { value, changeFunc, keyDownFunc, editMode } = props;

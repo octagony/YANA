@@ -1,3 +1,4 @@
+// Libraries
 import {
 	User,
 	createUserWithEmailAndPassword,
@@ -6,8 +7,10 @@ import {
 } from 'firebase/auth'
 import { auth } from '../firebase/config'
 import { useLocation } from 'wouter'
-import { useAuthStore } from '../store/auth.store'
 import { FirebaseError } from 'firebase/app'
+
+// Store
+import { useAuthStore } from '../store/auth.store'
 
 const useAuth = () => {
 	const { setUser, user, error, isLoading, setLoading, setError } =

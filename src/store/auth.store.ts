@@ -1,4 +1,7 @@
+// Libraries
 import { create } from 'zustand'
+
+// Types
 import { TUser } from '../../types/IUser'
 
 interface AuthState {

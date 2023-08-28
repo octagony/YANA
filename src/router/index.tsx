@@ -1,5 +1,8 @@
+// Libraries
 import React from 'react'
 import { Route, Switch } from 'wouter'
+
+// Components
 import App from '../pages/App'
 import EditNote from '../pages/EditNote/EditNote'
 import Auth from '../pages/Auth/Auth'

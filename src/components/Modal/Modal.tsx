@@ -1,10 +1,13 @@
 // Libraries
 import { createPortal } from 'react-dom'
 import cn from 'classnames'
-// Props
+
+// Types
 import { IModalProps } from './Modal.props'
+
 // Hooks
 import { useThemeToggling } from '../../hooks/useThemeToggling'
+
 // Styles
 import styles from './Modal.module.css'
 

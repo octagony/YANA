@@ -4,20 +4,18 @@ import dayjs from "dayjs";
 import { collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 
 // Components
 import Modal from "../Modal/Modal";
 import ReactMarkdown from "react-markdown";
 
-// Types
-import { INote } from "../../../types/INotes";
-
 // Store
 import { useAuthStore } from "../../store/auth.store";
 
-// Icons
-import { FaTrash } from "react-icons/fa";
-import { AiFillEdit } from "react-icons/ai";
+// Types
+import { INote } from "../../../types/INotes";
 
 // Styles
 import styles from "./Note.module.css";

@@ -1,4 +1,7 @@
+// Libraries
 import { useEffect } from 'react'
+
+// Store
 import { useTheme } from '../store/theme.store'
 
 export const useThemeToggling = () => {

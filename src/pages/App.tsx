@@ -1,3 +1,6 @@
+// Libraries
+import { animated, useSpring } from '@react-spring/web'
+
 // Components
 import NotesGrid from '../components/NotesGrid/NotesGrid'
 import SearchBar from '../components/SearchBar/SearchBar'
@@ -5,15 +8,12 @@ import Loader from '../components/Loader/Loader'
 import NotesSlider from '../components/NoteSlider/NotesSlider'
 import withLayout from '../layout/withLayout'
 
-// Libraries
-import { animated, useSpring } from '@react-spring/web'
+// Store
+import { useAuthStore } from '../store/auth.store'
 
 // Hooks
 import { useThemeToggling } from '../hooks/useThemeToggling'
 import { useAuthContext } from '../hooks/useAuthContext'
-
-// Store
-import { useAuthStore } from '../store/auth.store'
 
 const App = () => {
 	const { user } = useAuthContext()

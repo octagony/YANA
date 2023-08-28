@@ -1,5 +1,10 @@
+// Libraries
 import { HiSun, HiMoon } from "react-icons/hi";
+
+// Store
 import { useTheme } from "../../store/theme.store";
+
+// Styles
 import styles from "./ThemeToggle.module.css";
 
 const ThemeToggle = () => {

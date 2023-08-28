@@ -1,3 +1,4 @@
+// Libraries
 import {
 	useState,
 	useEffect,
@@ -5,15 +6,21 @@ import {
 	KeyboardEvent,
 	createRef,
 } from 'react'
-import { useNotes } from '../../store/notes.store'
-import Button from '../../UI/Button/Button'
-import styles from './NewNote.module.css'
-import Textarea from '../Textarea/Textarea'
-import ActionButtons from '../../UI/ActionButtons/ActionButtons'
-import { useAuthStore } from '../../store/auth.store'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import { nanoid } from 'nanoid'
+
+// Components
+import Button from '../../UI/Button/Button'
+import Textarea from '../Textarea/Textarea'
+import ActionButtons from '../../UI/ActionButtons/ActionButtons'
+
+// Store
+import { useNotes } from '../../store/notes.store'
+import { useAuthStore } from '../../store/auth.store'
+
+// Styles
+import styles from './NewNote.module.css'
 
 const NewNote = () => {
 	const { notes } = useNotes()

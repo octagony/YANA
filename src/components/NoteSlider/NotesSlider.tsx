@@ -1,11 +1,12 @@
 // Libraries
 import { useLocation } from 'wouter'
 
+// Components
+import Slider from 'react-slick'
+
 //Store
 import { useNotes } from '../../store/notes.store'
 
-// Components
-import Slider from 'react-slick'
 
 const NotesSlider = () => {
 	const { notes } = useNotes()

@@ -1,5 +1,7 @@
-import React from 'react'
+// Types
 import { IButton } from './Button.props'
+
+// Styles
 import styles from './Button.module.css'
 
 const Button = ({

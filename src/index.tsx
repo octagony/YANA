@@ -1,11 +1,15 @@
+// Libraries
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
-import { AuthProvider } from './context/auth.context'
 import RouterApp from './router'
 
-const app = document.getElementById('root') as HTMLBodyElement
+// Context
+import { AuthProvider } from './context/auth.context'
 
+// Styles
+import './index.css'
+
+const app = document.getElementById('root') as HTMLBodyElement
 const root = ReactDOM.createRoot(app)
 
 root.render(

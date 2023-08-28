@@ -14,6 +14,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { TbMarkdown, TbMarkdownOff } from "react-icons/tb";
+import { useLocation, useRoute } from "wouter";
 
 // Components
 import Button from "../../UI/Button/Button";
@@ -28,17 +29,14 @@ import { useAuthStore } from "../../store/auth.store";
 // Types
 import { INote } from "../../../types/INotes";
 
-// Styles
-import styles from "./EditNote.module.css";
-
 // Hooks
 import { useNotify } from "../../hooks/useNotify";
 
 // Context
 import { AuthContext } from "../../context/auth.context";
 
-// Router
-import { useLocation, useRoute } from "wouter";
+// Styles
+import styles from "./EditNote.module.css";
 
 const EditNote = () => {
   const { user, isLoading } = useContext(AuthContext);

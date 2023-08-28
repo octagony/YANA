@@ -1,9 +1,18 @@
+// Libraries
 import { Link } from 'wouter'
-import ThemeToggle from '../ThemeToggle/ThemeToggle'
-import styles from './Header.module.css'
-import { useAuthStore } from '../../store/auth.store'
-import useAuth from '../../hooks/useAuth'
 import { HiOutlineLogout, HiOutlineLogin } from 'react-icons/hi'
+
+// Components
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
+
+// Store
+import { useAuthStore } from '../../store/auth.store'
+
+// Hooks
+import useAuth from '../../hooks/useAuth'
+
+// Styles
+import styles from './Header.module.css'
 
 const Header = () => {
 	const { user } = useAuthStore()

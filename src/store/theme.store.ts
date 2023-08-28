@@ -1,4 +1,7 @@
+// Libraries
 import { create } from 'zustand'
+
+// Types
 import { ITheme } from '../../types/ITheme'
 
 export const useTheme = create<ITheme>(set => ({

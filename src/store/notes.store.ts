@@ -1,4 +1,7 @@
+// Libraries
 import { create } from "zustand";
+
+// Types
 import { INotes, INote } from "../../types/INotes";
 
 export const useNotes = create<INotes>((set) => ({
