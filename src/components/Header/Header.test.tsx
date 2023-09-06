@@ -1,11 +1,11 @@
-import React from 'react'
-import { render, screen, userEvent } from '../../../utils/testUtils'
-import Header from './Header'
+import { expect } from "vitest";
+import { render, screen } from "../../../utils/testUtils";
+import Header from "./Header";
 
-test('header rendering', async () => {
-	render(<Header />)
-
-	expect(screen.getByText(/yana/i)).toBeInTheDocument()
-
-	screen.debug()
-})
+describe("Header", () => {
+  test("header rendering", async () => {
+    render(<Header />);
+    const textElement = screen.getByText(/yana/i);
+    expect(textElement).toBeInTheDocument();
+  });
+});

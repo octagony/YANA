@@ -26,6 +26,7 @@
     "predeploy": "npm run build",
     "dev": "vite",
     "test": "vitest",
+    "coverage": "vitest run --coverage",
     "build": "eslint src && tsc && vite build"
   },
   "browserslist": {

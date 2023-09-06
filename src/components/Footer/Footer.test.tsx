@@ -1,8 +1,10 @@
-import React from 'react'
-import { render, screen, userEvent } from '../../../utils/testUtils'
-import Footer from './Footer'
+import { render, screen } from "../../../utils/testUtils";
+import Footer from "./Footer";
 
-test('footer rendering', async () => {
-	render(<Footer />)
-	expect(screen.getByText(/octagony/i)).toBeInTheDocument()
-})
+describe("Footer", () => {
+  test("footer rendering", async () => {
+    render(<Footer />);
+    const textElement = screen.getByText(/octagony/i);
+    expect(textElement).toBeInTheDocument();
+  });
+});
